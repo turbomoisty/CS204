@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="{{url_for('static', filename='base.css')}}">
 </head>
 <body>
+    <nav>
     <h1>Flaskr</h1>
     <ul>
       {% if g.user %}
@@ -17,7 +18,7 @@
         <li><a href="{{ url_for('auth.login') }}">Log In</a>
       {% endif %}
     </ul>
-  </nav>
+    </nav>
   <section class="content">
     <header>
       {% block header %}{% endblock %}
