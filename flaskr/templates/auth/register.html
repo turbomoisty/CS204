@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en" style="background-color: #15191F;">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{% endblock %} Register</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='register.css')}}">
+    <style>
+
+      div form input:nth-child(even){
+        height: 40px;
+        width: 80%;
+        border-radius: 9px;
+        border: 1.1px solid rgb(175, 235, 248);
+        background-color: #202730;
+        color: beige;
+      }
+
+      .header_element.register{
+        background-color: #303a48;
+      }
+
+      .content-split{
+        background-image: url('/flaskr/images/lady.png');
+      }
+    </style>
+</head>
+<body>
+    <nav>
+      <div class="header_text">
+          <ul class="user_options">
+        {% if g.user %}
+            <li class><span>{{ g.user['username'] }}</span>
+            <li><a href="{{ url_for('auth.logout') }}">Log Out</a>
+        {% else %}
+            <li class="header_element contact"><a href="">Contact us</a>
+            <li class="header_element register"><a href="{{ url_for('auth.register') }}">Register</a>
+            <li class="header_element login"><a href="{{ url_for('auth.login') }}">Log In</a>
+        {% endif %}
+          </ul>
+      </div>
+    </nav>
+
+<div class="content-split">
+
+    <section class="content">
+      <header>
+        {% block header %}{% endblock %}
+      </header>
+      {% for message in get_flashed_messages() %}
+      <div class="flash">{{ message }}</div>
+      {% endfor %}
+      <div class="table">
+        <form id='register_id'method="post">
+          <label for="username">Username</label>
+          <input name="username entry" id="username" placeholder="John Doe" style="text-align: center;">
+          <label for="password entry">Password</label>
+          <input type="password entry" name="password" id="password" placeholder="examplePassword" style="text-align: center;">
+          <label for="email">Email</label>
+          <input type="email entry" name="email" id="email" placeholder="example@email.com" style="text-align: center" required>
+          <input type="submit" value="Register" style="color: azure; border-radius: 12px; background-color: #15191F; 
+          border:1.2px solid rgb(118, 193, 6); width: 80%; height: 20%;">
+        </form>
+      </div>
+    </section>
+
+  </div>
+</body>
+</html>

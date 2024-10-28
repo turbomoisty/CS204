@@ -1,6 +1,5 @@
 from flask import Flask, render_template
 import os
-from time import sleep
 
 
 
@@ -33,10 +32,11 @@ def create_app(test_config=None):
     
     from . import auth
     app.register_blueprint(auth.bp)
+    
+    from .views import views 
+    app.register_blueprint(views, url_prefix='/')
+    
+    
         
-
-    @app.route('/')
-    def hello():
-        return ("why isn't it working????")
     
     return app

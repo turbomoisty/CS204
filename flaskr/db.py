@@ -28,12 +28,11 @@ def init_db():
         # get_db returns a database connection, which is used to execute the commands read from the file.
         db.executescript(f.read().decode('utf8'))
         
-@click.command('init-db')
+@click.command('init-db') # Defines CLI called init-db that calls the function show shows the message to the user
 def init_db_command():
     init_db()
     click.echo('initialised the database.')
     
 def init_app(app):
     app.teardown_appcontext(close_db) # Tells Flask to call that function when cleaning up after returning the response.
-
     app.cli.add_command(init_db_command) # Adds a new command that can be called with the flask command.

@@ -24,7 +24,7 @@ def register():
             error = 'Password is required'
             
         elif not email:
-            error = 'Email is requiredd'
+            error = 'Email is required'
             
         if error is None:
             try:
@@ -41,12 +41,11 @@ def register():
     return render_template('auth/register.html')
 
 
-@bp.route('/login', methods=['GET', 'POST'])
+@bp.route('/login', methods=['GET','POST'])
 def login():
     if request.method == 'POST':
         username = request.form['username']
         password = request.form['password']
-        email = request.form['email']
         db = get_db()
         error = None
         
@@ -54,7 +53,7 @@ def login():
             # If the query doesn't return a result, it returns None
         if user is None:
             error = 'Incorrect Username'
-        elif not check_password_hash(user[password], password): # check_password_hash hashes submitted pw in the same manner as the
+        elif not check_password_hash(user['password'], password): # check_password_hash hashes submitted pw in the same manner as the
             # stored hash, and if they match, the PW is valid.
             error = 'Incorrect Password'
             
@@ -64,6 +63,7 @@ def login():
             return redirect(url_for('index'))
         
         flash(error)
+    return render_template('auth/login.html')
         
 @bp.before_app_request
 def load_logged_in_user():
@@ -76,6 +76,15 @@ def load_logged_in_user():
         
         
 @bp.route('/logout')
-def log_out():
+def logout():
     session.clear()
     return redirect(url_for('index'))
+
+def login_required(view):
+    @functools.wraps(view)
+    def wrapped_view(**kwargs):
+        if g.user is None:
+            return redirect(url_for('auth.login'))
+        
+        return view(**kwargs)
+    return wrapped_view
