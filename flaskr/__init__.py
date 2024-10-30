@@ -37,6 +37,4 @@ def create_app(test_config=None):
     app.register_blueprint(views, url_prefix='/')
     
     
-        
-    
     return app

@@ -1,4 +1,5 @@
 import functools
+import re
 
 from flask import (Blueprint, flash, g, redirect, render_template, request, session, url_for)
 from werkzeug.security import check_password_hash, generate_password_hash
@@ -17,20 +18,32 @@ def register():
         db = get_db()
         error = None
         
-        if not username:
+        
+        if not re.match("^[A-Za-z0-9]+$", username):
             error = 'Username is required'
             
+        if password:
+            if len(password) < 8:
+                error = 'Password length must be at least 8'
+
         elif not password:
             error = 'Password is required'
             
+            
         elif not email:
             error = 'Email is required'
+            
+        elif not re.match("^[a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$", email):
+            error = "Please enter a valid email"
             
         if error is None:
             try:
                 db.execute("INSERT INTO user (username, password, email) VALUES (?, ?, ?)", 
                            (username, generate_password_hash(password), email),)
                 db.commit()
+                
+                user_list = db.execute("SELECT * FROM user").fetchall()
+                print("User List:", user_list)
             except db.IntegrityError:
                 error = f"User {username} already exists"
                 
@@ -60,7 +73,9 @@ def login():
         if error is None:
             session.clear()
             session['user_id'] = user['id']
-            return redirect(url_for('index'))
+            print("User ID Set in Session:", session['user_id'])  # Debug: Confirm user_id is set in session
+
+            return redirect(url_for('views.main_page'))
         
         flash(error)
     return render_template('auth/login.html')
@@ -72,19 +87,18 @@ def load_logged_in_user():
     if user_id is None:
         g.user = None
     else:
-        g.user = get_db().execute('SELECT * FROM user WHERE id = ?', (user_id)).fetchone()
+        g.user = get_db().execute('SELECT * FROM user WHERE id = ?', (user_id,)).fetchone()
         
         
 @bp.route('/logout')
 def logout():
     session.clear()
-    return redirect(url_for('index'))
+    return redirect(url_for('auth.login'))
 
 def login_required(view):
     @functools.wraps(view)
     def wrapped_view(**kwargs):
         if g.user is None:
             return redirect(url_for('auth.login'))
-        
         return view(**kwargs)
     return wrapped_view
