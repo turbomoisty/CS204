@@ -16,7 +16,7 @@
         height: 40px;
         width: 80%;
         border-radius: 9px;
-        border: 1.1px solid rgb(175, 235, 248);
+        border: 1.1px solid (175, 235, 248);
         background-color: #202730;
         color: beige;
       }
@@ -36,9 +36,8 @@
         top: 20%;
         z-index: -1;
         opacity: 0.1;
-
-
       }
+
       .flash{
         position:absolute;
         color: white;
@@ -51,10 +50,11 @@
       }
 
       .option_help{
-        border: 1px solid white;
         margin-left: 90%;
         margin-bottom: auto;
       }
+      
+
 
     </style>
 </head>
@@ -74,18 +74,24 @@
       </div>
     </nav>
 
+    <div class="lady" style="z-index: -1;"></div>
+
     <div class="option_grid">
         <div class="option hash_auth">
+          <p class="tool_tip_text">A hash checker is a tool that verifies the integrity of a file by comparing its unique 'fingerprint', known as a "hash,". This helps ensure the file hasn’t been altered or corrupted, making it especially useful when downloading files from the internet.</p>
           <p class="option_help">?</p>
-          <div class ="pic">
-          </div>
-          <a></a>
+          <a class ="pic"  style=" background: url('https://raw.githubusercontent.com/turbomoisty/CS204/7b5e3c82dc4f56b89603646b64ff57b1699b5a33/flaskr/images/hash_lock.png') ;
+          background-size: cover;" href="{{url_for('views.hash_check')}}">
+          </a>
+          <a>Hash Checker</a>
         </div>     
         <div class="option option-2">
+          <p class="tool_tip_text">File encryption is the process of converting a file’s data into a coded format that can only be read with a special key or password, protecting it from unauthorized access. Decryption reverses this process, using the key to restore the file to its original, readable form so it can be accessed safely.</p>
           <p class="option_help">?</p>
-          <div class ="pic"></div>
-    
-          <a></a>
+          <a class ="pic" style="background: url('https://raw.githubusercontent.com/turbomoisty/CS204/82aac785ebb13c02cbe7fc785ab2ff9df37ad2b2/flaskr/images/file_lock.png');
+          background-size: cover; margin-right: 4%;" href="{{url_for('views.file_encrypt')}}">
+        </a>
+          <a>File Locker</a>
         </div>
         <div class="option option-3">
           <p class="option_help">?</p>

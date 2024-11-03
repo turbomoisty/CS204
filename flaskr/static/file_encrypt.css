@@ -1,5 +1,4 @@
 
-
 a{
     text-decoration: none;
     color: #EAD8B1;
@@ -78,78 +77,3 @@ ul.user_options{
     background-color: #303a48;
 
 }
-
-/*  -----------------Header Element Ends Here-------------------- */
-
-.option_grid{
-    margin-top: 6%;
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    column-gap: 12%;
-    row-gap: 6%;
-    justify-content: center;
-    flex-wrap: tr;
-}
-
-.option{
-    position: relative;
-    border: 1px solid aliceblue;
-    background-color:#15191F;
-    border-radius: 12px;
-    height: 230px;
-    width: 230px;
-    color: #EAD8B1;
-    text-align: center;
-    display: inline-grid;
-    grid-template-rows: 1fr 1fr 1fr;
-    justify-items: center;
-    opacity: 0.8;
-
-}
-
-.option_help:hover{
-    cursor: pointer;
-}
-
-
-div.option a{
-    color: aliceblue;
-    margin-top: 2%;
-    transition: transform 0.2s ease-in-out;
-}
-
-div.option a:hover{
-    transform: scale(1.05);
-    cursor: pointer;
-}
-
-.pic{
-    height: 150px;
-    width: 150px;
-    background-color: aliceblue;
-    transition: transform 0.2s ease-in-out;
-}
-
-.pic:hover{
-    transform: scale(1.08);
-    cursor: pointer;
-}
-
-.tool_tip_text{
-    display: none;
-    border: 1px solid aliceblue;
-    z-index: 1;
-    position: absolute;
-    background-color: #15191F;
-    font-weight: 100;
-    animation: fadeIn 0.4s ease-in-out;
-}
-
-@keyframes fadeIn {
-    from {
-      opacity: 0;
-    }
-    to {
-      opacity: 1;
-    }
-   }

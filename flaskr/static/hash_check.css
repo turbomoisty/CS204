@@ -1,0 +1,237 @@
+
+a{
+    text-decoration: none;
+    color: #EAD8B1;
+    }
+    
+a:visited{
+    text-decoration: none;
+    color: #EAD8B1;
+    transition: colour 0.2s ease;
+    }
+
+body{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin: auto;
+}
+
+h1 {
+    color: #EAD8B1;
+    font-size: larger;
+
+}
+
+/*  -----------------Header Element Starts Here-------------------- */
+
+nav{
+    background-color: #202730;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: 40px;
+    box-shadow:
+    0px 0px 10px 10px rgba(0, 0, 0, 0.3);
+}
+
+div.header_text{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 90%;
+}
+
+ul.user_options{
+    width: auto;
+    display: flex;
+    flex-direction: row;
+    list-style: none;
+    justify-content: space-evenly;
+    font-size: larger;
+    gap: 5%;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    width: 100%;
+    margin: auto;
+}
+
+.header_element{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 90px;
+    height: 40px;
+    border-radius: 5%;
+    transition: background-color 0.2s ease-in;
+    color: #EAD8B1;
+}
+
+.header_element:visited{
+    text-decoration: none;
+}
+
+.header_element:hover{
+    background-color: #303a48;
+
+}
+
+/*  -----------------Header Element Ends Here-------------------- */
+
+
+.lady{
+    position: absolute;
+    background: url('https://raw.githubusercontent.com/turbomoisty/CS204/4f00e881a0c3b2c60d82b4f06008be6fd4ae298a/flaskr/images/lady.png')
+    no-repeat ;
+    margin-top: -3%;
+    padding: 250px;
+    background-size: 480px auto;
+    background-position: center;
+    top: 114px;
+    z-index: -1;
+    opacity: 0.1;
+  }
+  
+
+  #hash_segment{
+    display: flex;
+    flex-direction: column;
+    justify-items: center;
+    align-items: center;
+  }
+
+  .pic{
+    margin-top: 20%;
+    height: 200px;
+    width: 200px;
+    background-color: aliceblue;
+    position:relative;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 85%;
+}
+
+#hash_segment div p{
+    color: aliceblue;
+    font-weight: bold;
+    font-size: 4rem;
+    margin-left: 45px;
+
+    
+}
+
+.hash_selector_text{
+    color: aliceblue;
+}
+
+.hash_select{
+    background-color: #202730;
+    color: aliceblue;
+    margin-top: 5px;
+    width: 90px;
+    height: 45px;
+    text-align: center;
+
+}
+.hash_input_form{  /* Controls style for the two boxes*/
+    margin-top: 1%;
+    display: grid;
+    width: 94%;
+    justify-content: center;    
+    grid-template-columns: 450px 2% 450px;
+    column-gap:8%;
+    height: 300px;
+}
+
+
+/* Hash box check CSS Below*/
+
+div .hash_check_box{
+    display: flex;
+    flex-direction: column;
+    border: 1.5px solid aliceblue;
+    background-color: #1b222ac3;
+    align-items: center;
+    position: relative;
+    width: 100%;
+
+}
+
+.hash_check_box select{
+    margin-top: 4%;
+    background-color: #15191F;
+    width: 90%;
+    color: aliceblue;
+    height: 12%;
+    text-align: center;
+    font-size: large;
+}
+
+.hash_check_box select:hover{
+    cursor: pointer;
+}
+
+.hash_check_button{  /* ------  BUTTON -----------*/
+    margin-top: 80px;
+    justify-self: center;
+
+}
+
+.hash_check_button > button{
+    height: 80px;
+    width: 80px;
+}
+
+/* -------For if user selects the 'TEXT' option START ------*/
+.user_select_text{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 90%;
+    
+}
+
+.hash_check_box div input{
+    background-color: #202730;
+    height: 40px;
+    text-align: center;
+    color: aliceblue;
+}
+
+.hash_check_box div label{
+    text-align: center;
+    color: aliceblue;
+    margin-bottom: -3%;
+}
+
+button.hash_generate {
+    background-color: #202730;
+    border: 1px solid aliceblue;
+    height: 40px;
+    color: aliceblue;
+    transition: background-color 0.2s ease-in-out, transform 0.2s ease-in-out;
+}
+
+button.hash_generate:hover{
+    background-color: #343f4d;
+    cursor: pointer;
+}
+
+button.hash_generate:active{
+    transform: scale(0.95);
+}
+
+
+/* -------For if user selects the 'TEXT' option END ------*/
+
+
+.box_left{
+}
+
+.box_right{
+
+}

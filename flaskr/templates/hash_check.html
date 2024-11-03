@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hash Check</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='hash_check.css')}}">
+    <title>{% block title %}{% endblock %} Hash checker</title>
+
+    <style>
+        
+        html{
+            background-color: #15191F; /*MAIN COLOUR FOR ALMOST EVERYTHING*/
+        }
+
+        .username_session{
+
+            color: #EAD8B1;
+          }
+
+        .back{
+            z-index: 1;
+            position: fixed;
+            margin-right: 90%;
+            margin-top: -52%;
+            font-weight: bold;
+            font-size: 1.5rem;
+            margin-left: 6%;
+            width: 120px;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .back:hover{
+            transform: scale(1.1);
+            cursor: pointer;
+        }
+
+        ::placeholder{
+            color: rgb(177, 181, 185);
+          }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="header_text">
+            <ul class="user_options">
+          {% if g.user %}
+              <li class = "username_session"><span>Welcome {{ g.user['username'] }}</span>
+              <li><a href="{{ url_for('auth.login') }}">Log Out</a>
+          {% else %}
+              <li class="header_element contact"><a href="">Contact us</a>
+              <li class="header_element register"><a href="{{ url_for('auth.register') }}">Register</a>
+              <li class="header_element login"><a href="{{ url_for('auth.login') }}">Log In</a>
+          {% endif %}
+            </ul>
+        </div>
+      </nav>
+      <div class="lady"></div>
+      <a class="back" href="{{url_for('views.main_page')}}" style="color: aliceblue;"> << Return</a>
+      <div id="hash_segment">
+        <div class ="pic"  style=" background: url('https://raw.githubusercontent.com/turbomoisty/CS204/7b5e3c82dc4f56b89603646b64ff57b1699b5a33/flaskr/images/hash_lock.png') ;
+        background-size: cover;">
+            <p>HASH</p>
+            <p>CHECK</p>
+        </div>
+            <label class='hash_selector_text' for="hash_value" style="margin-left: -22px;">Select Hash algorithm to check:</label>
+            <select class="hash_select" style='cursor: pointer;' name="hash" id="hash">
+              <option value="md5">md5</option>
+              <option value="sha1">sha1</option>
+              <option value="sha224">sha224</option>
+              <option value="sha256">sha256</option>
+              <option value="sha384">sha384</option>
+              <option value="sha512">sha512</option>
+            </select>
+      </div>
+      <div class="hash_input_form">
+        <div class="box_left hash_check_box">
+                <label for="hash_check_type_l"></label>
+                <select name="hash_check_type_l" id="hash">
+                    <option value="Text">Text</option>
+                    <option value="File">File</option>
+                    <option value="Hash_text">Hash Text</option>
+                </select>
+                <div class="user_select_text option_1_left"> 
+                    <label for="text_input_l"></label>
+                    <input type="text" id="text_input_l" placeholder="Enter Hash" name="text_input_l">
+                    <button class="hash_generate">Generate Hash</button>
+                    <label for="hash_output_l">Hash Output</label>
+                    <input type="text" id="hash_output_l" name="hash_output_l">
+                </div>
+        </div>
+
+        <div class="hash_check_button">
+            <button >ddsss</button>
+        </div>
+
+        <div class="box_right hash_check_box">
+                <label for="hash_check_type_r"></label>
+                <select name="hash_check_type_r" id="hash">
+                    <option value="Text">Text</option>
+                    <option value="File">File</option>
+                    <option value="Hash_text">Hash Text</option>
+                </select>
+                <div class="user_select_text option_1_right">
+                    <label for="text_input_r" ></label>
+                    <input type="text" id="text_input_r" placeholder="Enter Hash" name="text_input_r">
+                    <button class="hash_generate">Generate Hash</button>
+                    <label for="hash_output_r">Hash Output</label>
+                    <input type="text" id="hash_output_r" name="hash_output_r">
+                </div>
+        </div>
+        </div>
+
+      </div>
+    
+</body>
+</html>
