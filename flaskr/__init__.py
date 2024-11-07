@@ -2,7 +2,7 @@ from flask import Flask, render_template
 import os
 
 
-really_secret_key = os.urandom(32)
+really_secret_key = os.urandom(32)  ##Don't really need it for production phase, but why not.
 
 
 

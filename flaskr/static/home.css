@@ -1,4 +1,14 @@
 
+/* ---------BECAUSE I KEEP FORGETTING------------*/
+/* target: parent-tag > child-tag 
+     target: former_element + preceding_element - Will only target the one preceding element
+     target: former_element ~preceding element - Will target all preceding element until break into another tag.
+      */
+
+
+
+
+
 
 a{
     text-decoration: none;

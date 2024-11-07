@@ -178,7 +178,16 @@ div .hash_check_box{
 .hash_check_button{  /* ------  BUTTON -----------*/
     margin-top: 80px;
     justify-self: center;
+}
 
+.hash_check_button > button{
+    transition: transform 0.2s ease-in;
+    border-radius: 5px;
+    background-color: rgb(132, 216, 219);
+    color: black;
+}
+.hash_check_button > button:hover{
+    transform: scale(1.03);
 }
 
 .hash_check_button > button{
@@ -187,46 +196,125 @@ div .hash_check_box{
 }
 
 /* -------For if user selects the 'TEXT' option START ------*/
+
 .user_select_text{
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
     width: 90%;
-    
-}
-
-.hash_check_box div input{
-    background-color: #202730;
-    height: 40px;
+    height: 90%;
+    display: flex;
     text-align: center;
-    color: aliceblue;
+    flex-direction: column;
+    gap: 5%;
+
 }
 
-.hash_check_box div label{
-    text-align: center;
-    color: aliceblue;
-    margin-bottom: -3%;
-}
-
-button.hash_generate {
+.user_select_text > input{
     background-color: #202730;
+    color: aliceblue;
     border: 1px solid aliceblue;
     height: 40px;
-    color: aliceblue;
-    transition: background-color 0.2s ease-in-out, transform 0.2s ease-in-out;
+    text-align: center;
 }
 
-button.hash_generate:hover{
-    background-color: #343f4d;
+.user_select_text > input + button{
+    background-color: #202730;
+    border-radius: 1px;
+    color: aliceblue;
+    height: 40px;
+    border: 1px solid aliceblue;
+    margin-top: 1%;
+    transition: transform 0.2s ease-in-out;
+
+}
+
+.user_select_text > input + button:hover{
+    transform: scale(1.03);
     cursor: pointer;
 }
 
-button.hash_generate:active{
-    transform: scale(0.95);
+.user_select_text > input + button:active{
+    transform: scale(0.97);
 }
 
-
 /* -------For if user selects the 'TEXT' option END ------*/
+
+
+/* -------For if user selects the 'FILE' option START ------*/
+.user_select_file{
+    width: 90%;
+    height: 90%;
+    display: flex;
+    text-align: center;
+    flex-direction: column;
+    gap: 5%;
+}
+input[type="file"]{
+    display: none;
+}
+
+.custom_file{
+    margin-top: 20px;
+    background-color: #e6e4e4;
+    cursor: pointer;
+    height: 30px;
+    width: 90px;
+    align-self: center;
+    color:#202730;
+}
+.user_select_file > input + button{
+    background-color: #202730;
+    border-radius: 1px;
+    color: aliceblue;
+    height: 40px;
+    border: 1px solid aliceblue;
+    margin-top: 1%;
+    transition: transform 0.2s ease-in-out;
+
+}
+
+.user_select_file > input + button:hover{
+    transform: scale(1.03);
+    cursor: pointer;
+}
+
+.user_select_file > input + button:active{
+    transform: scale(0.97);
+}
+
+.user_select_file > input:nth-of-type(2){ /*nth-of-child targets the Nth child element. nth-of-type will target the targeted element at nth place*/
+    height: 30px;
+    background-color:#202730;
+    color: aliceblue;
+    font-size: large;
+}
+
+/* -------For if user selects the 'FILE' option END ------*/
+
+
+
+
+/* -------For if user selects the 'HASH' option START ------*/
+
+
+.user_select_hash{
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    align-items: center;
+}
+.user_select_hash > input:nth-of-type(1){
+    background-color:#202730;
+    border: 1px solid wheat;
+    color: aliceblue;
+    margin-top: 10%;
+    width: 100%;
+    height: 40px;
+    text-align: center;
+}
+/* -------For if user selects the 'HASH' option END ------*/
+
+
+
+
 
 
 .box_left{
