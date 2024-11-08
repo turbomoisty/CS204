@@ -240,6 +240,7 @@ div .hash_check_box{
 
 /* -------For if user selects the 'FILE' option START ------*/
 .user_select_file{
+
     width: 90%;
     height: 90%;
     display: flex;
@@ -280,7 +281,7 @@ input[type="file"]{
     transform: scale(0.97);
 }
 
-.user_select_file > input:nth-of-type(2){ /*nth-of-child targets the Nth child element. nth-of-type will target the targeted element at nth place*/
+.user_select_file > input:nth-of-type(2){ /*nth-of-child targets the Nth of whatever child element. nth-of-type will target the targeted element at nth place*/
     height: 30px;
     background-color:#202730;
     color: aliceblue;

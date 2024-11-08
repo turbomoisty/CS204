@@ -45,7 +45,21 @@ for (let i = 0; i < user_help.length; i++){
             }, false) 
         }   /*  -----------------END OF THIRD i ELEMENT-------------------- */
 
-    });
+        else if(i===3){
+            if(user_help[i]){
+                tool_tip[i].style.display ='block';
+            }
+
+            tool_tip[i].addEventListener('mousover', ()=>{
+                tool_tip[i].style.display = 'block';
+            }, false)
+
+            tool_tip[i].addEventListener('mouserleave', ()=>{
+                tool_tip.style.display='none';
+            }, false)
+        }
+
+    }); 
 
 
 }

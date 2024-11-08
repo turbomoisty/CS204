@@ -6,7 +6,7 @@ for (let i = 1; i < option_div.length; i ++){
 }
 
 hash_option_drop_down.addEventListener('change', () =>{
-    const selectedValue = hash_option_drop_down.value;
+    let selectedValue = hash_option_drop_down.value;
 
     for (let i = 0; i < option_div.length; i ++){
         option_div[i].style.display = 'none';
@@ -31,15 +31,15 @@ for (let i = 1; i < option_div_r.length; i ++){
 }
 
 hash_option_drop_down_r.addEventListener('change', () =>{
-    const selectedValue_r = hash_option_drop_down_r.value;
+    let selectedValue_r = hash_option_drop_down_r.value;
 
     for (let i = 0; i < option_div_r.length; i ++){
         option_div_r[i].style.display = 'none';
     }
 
-
     if (selectedValue_r) {
-        const selectedDiv_r = document.querySelector(`.${selectedValue_r}`);
+        const selectedDiv_r = document.querySelector(`.${selectedValue_r}`); //Remember that the selectedValue_r is a CLASS selector, took me 2 hours to wonder why the Event listener wasn't working
+
         if (selectedDiv_r) {
             selectedDiv_r.style.display = 'flex';
         }
