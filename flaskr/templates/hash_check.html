@@ -62,7 +62,7 @@
       <div class="lady"></div>
       <a class="back" href="{{url_for('views.main_page')}}" style="color: aliceblue;"> << Return</a>
       <div id="hash_segment">
-        <div class ="pic"  style=" background: url('https://raw.githubusercontent.com/turbomoisty/CS204/7b5e3c82dc4f56b89603646b64ff57b1699b5a33/flaskr/images/hash_lock.png') ;
+        <div class ="pic"  style=" background: url('https://raw.githubusercontent.com/turbomoisty/CS204/7b5e3c82dc4f56b89603646b64ff57b1699b5a33/flaskr/imagock.png') ;
         background-size: cover;">
             <p>HASH</p>
             <p>CHECK</p>
@@ -85,29 +85,32 @@
                     <option value="File">File</option>
                     <option value="Hash_text">Hash Text</option>
                 </select>
-                <div class="Text user_select_text option_l"> 
+                <div class="Text user_select_text option_l"> <!-- For text-->
                     <label for="text_input_l"></label>
                     <input type="text" id="text_input_l" placeholder="Enter word or sentence to hash" name="text_input_l">
-                    <button class="hash_generate">Generate Hash</button>
+                    <button class="hash_generate" onclick="generateHash('l')">Generate Hash</button>
                     <label for="hash_output_l">Hash Output</label>
-                    <input type="text" id="hash_output_l" name="hash_output_l">
+                    <input type="text" id="hash_output_l" name="hash_output_l" readonly>
                 </div>
-                <div class="File user_select_file option_l">
+                <div class="File user_select_file option_l">  <!-- For file uploading -->
                     <label for="file_input_l" class="custom_file">Upload File</label>
                     <input type="file" id="file_input_l" name="file_input_l">
                     <button class="hash_generate">Generate Hash</button>
-                    <label for="hash_output_l">Hash Output</label>
-                    <input type="text" id="hash_output_l" name="hash_output_l">
+                    <label for="hash_output_l_hash">Hash Output</label>
+                    <input type="text" id="hash_output_l_file" name="hash_output_l_file">
                 </div>
-
-                <div class="Hash_text user_select_hash option_l">
+ 
+                <div class="Hash_text user_select_hash option_l"> <!-- Just raw hash data -->
                     <label for="hash_input_l"></label>
-                    <input type="text" id="hash_input_l" placeholder="Enter Hash Here" name="hash_input_l">
+                    <input type="text" id="hash_input_l_hash" placeholder="Enter Hash Here" name="hash_input_l_hash">
                 </div>
         </div>
 
         <div class="hash_check_button">
-            <button >Compare Hash Values</button>
+            <button onclick="compareHash()" class="hash_check_button_click" >Compare Hash Values</button>
+            <p id="compare_result" style="color: aliceblue;"></p>
+
+
         </div>
 
         <div class="box_right hash_check_box">
@@ -120,20 +123,20 @@
                 <div class="Text_r user_select_text option_r">
                     <label for="text_input_r" ></label>
                     <input type="text" id="text_input_r" placeholder="Enter word or sentence to hash"name="text_input_r">
-                    <button class="hash_generate">Generate Hash</button>
+                    <button class="hash_generate" onclick="generateHash('r')">Generate Hash</button>
                     <label for="hash_output_r">Hash Output</label>
-                    <input type="text" id="hash_output_r" name="hash_output_r">
+                    <input type="text" id="hash_output_r" name="hash_output_r" readonly>
                 </div>
                 <div class="File_r user_select_file option_r">
                     <label for="file_input_r" class="custom_file">Upload File</label>
                     <input type="file" id="file_input_r" name="file_input_r">
                     <button class="hash_generate">Generate Hash</button>
-                    <label for="hash_output_l">Hash Output</label>
-                    <input type="text" id="hash_output_r" name="hash_output_r">
+                    <label for="hash_output_r">Hash Output</label>
+                    <input type="text" id="hash_output_r_file" name="hash_output_r_file">
                 </div>
                 <div class="Hash_text_r user_select_hash option_r">
                     <label for="hash_input_r"></label>
-                    <input type="text" id="hash_input_r" placeholder="Enter Hash Here" name="hash_input_r">
+                    <input type="text" id="hash_input_r_hash" placeholder="Enter Hash Here" name="hash_input_r_hash">
                 </div>
         </div>
         </div>

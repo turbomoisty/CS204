@@ -26,10 +26,15 @@ h1 {
 
 }
 
+:root{
+    --main_colour_dark: #202730;
+    --main_colour_light: aliceblue;
+}
+
 /*  -----------------Header Element Starts Here-------------------- */
 
 nav{
-    background-color: #202730;
+    background-color: var(--main_colour_dark);
     display: flex;
     justify-content: center;
     width: 100%;
@@ -106,7 +111,7 @@ ul.user_options{
     margin-top: 20%;
     height: 200px;
     width: 200px;
-    background-color: aliceblue;
+    background-color: var(--main_colour_light);
     position:relative;
     display: flex;
     flex-direction: row;
@@ -116,7 +121,7 @@ ul.user_options{
 }
 
 #hash_segment div p{
-    color: aliceblue;
+    color: var(--main_colour_light);
     font-weight: bold;
     font-size: 4rem;
     margin-left: 45px;
@@ -125,12 +130,12 @@ ul.user_options{
 }
 
 .hash_selector_text{
-    color: aliceblue;
+    color: var(--main_colour_light);
 }
 
 .hash_select{
-    background-color: #202730;
-    color: aliceblue;
+    background-color: var(--main_colour_dark);
+    color: var(--main_colour_light);
     margin-top: 5px;
     width: 90px;
     height: 45px;
@@ -153,7 +158,7 @@ ul.user_options{
 div .hash_check_box{
     display: flex;
     flex-direction: column;
-    border: 1.5px solid aliceblue;
+    border: 1.5px solid var(--main_colour_light);
     background-color: #1b222ac3;
     align-items: center;
     position: relative;
@@ -165,7 +170,7 @@ div .hash_check_box{
     margin-top: 4%;
     background-color: #15191F;
     width: 90%;
-    color: aliceblue;
+    color: var(--main_colour_light);
     height: 12%;
     text-align: center;
     font-size: large;
@@ -176,7 +181,7 @@ div .hash_check_box{
 }
 
 .hash_check_button{  /* ------  BUTTON -----------*/
-    margin-top: 80px;
+    margin-top: 30px;
     justify-self: center;
 }
 
@@ -195,6 +200,10 @@ div .hash_check_box{
     width: 80px;
 }
 
+#compare_result{
+    text-align: center;
+}
+
 /* -------For if user selects the 'TEXT' option START ------*/
 
 .user_select_text{
@@ -208,19 +217,19 @@ div .hash_check_box{
 }
 
 .user_select_text > input{
-    background-color: #202730;
-    color: aliceblue;
-    border: 1px solid aliceblue;
+    background-color: var(--main_colour_dark);
+    color: var(--main_colour_light);
+    border: 1px solid var(--main_colour_light);
     height: 40px;
     text-align: center;
 }
 
 .user_select_text > input + button{
-    background-color: #202730;
+    background-color: var(--main_colour_dark);
     border-radius: 1px;
-    color: aliceblue;
+    color: var(--main_colour_light);
     height: 40px;
-    border: 1px solid aliceblue;
+    border: 1px solid ahos liceblue;
     margin-top: 1%;
     transition: transform 0.2s ease-in-out;
 
@@ -259,14 +268,14 @@ input[type="file"]{
     height: 30px;
     width: 90px;
     align-self: center;
-    color:#202730;
+    color:var(--main_colour_dark);
 }
 .user_select_file > input + button{
-    background-color: #202730;
+    background-color: var(--main_colour_dark);
     border-radius: 1px;
-    color: aliceblue;
+    color: var(--main_colour_light);
     height: 40px;
-    border: 1px solid aliceblue;
+    border: 1px solid var(--main_colour_light);
     margin-top: 1%;
     transition: transform 0.2s ease-in-out;
 
@@ -283,8 +292,8 @@ input[type="file"]{
 
 .user_select_file > input:nth-of-type(2){ /*nth-of-child targets the Nth of whatever child element. nth-of-type will target the targeted element at nth place*/
     height: 30px;
-    background-color:#202730;
-    color: aliceblue;
+    background-color:var(--main_colour_dark);
+    color: var(--main_colour_light);
     font-size: large;
 }
 
@@ -303,9 +312,9 @@ input[type="file"]{
     align-items: center;
 }
 .user_select_hash > input:nth-of-type(1){
-    background-color:#202730;
+    background-color:var(--main_colour_dark);
     border: 1px solid wheat;
-    color: aliceblue;
+    color: var(--main_colour_light);
     margin-top: 10%;
     width: 100%;
     height: 40px;
