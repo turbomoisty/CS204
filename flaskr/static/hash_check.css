@@ -294,7 +294,7 @@ div .hash_check_box{
     transform: scale(0.97);
 }
 
-.user_select_file > input:nth-of-type(2){ /*nth-of-child targets the Nth of whatever child element. nth-of-type will target the targeted element at nth place*/
+.user_select_file > input:nth-of-type(2){
     height: 30px;
     background-color:var(--main_colour_dark);
     color: var(--main_colour_light);
