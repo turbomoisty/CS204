@@ -94,6 +94,7 @@ ul.user_options{
     z-index: -1;
     opacity: 0.1;
   }
+
 #drop_area{
     padding: 30px;
     width: 30em;
@@ -104,4 +105,10 @@ ul.user_options{
     border-radius: 5%;
     text-align: center;
 
+}
+
+
+#file_view > img{
+    width: 30%;
+    height: 30%;
 }
