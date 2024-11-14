@@ -257,11 +257,14 @@ div .hash_check_box{
     flex-direction: column;
     gap: 5%;
 }
-input[type="file"]{
-    display: none;
-}
 
-.custom_file{
+    .user_select_file > input{
+
+    color: var(--main_colour_light);
+    }
+
+
+/* .custom_file{
     margin-top: 20px;
     background-color: #e6e4e4;
     cursor: pointer;
@@ -269,7 +272,8 @@ input[type="file"]{
     width: 90px;
     align-self: center;
     color:var(--main_colour_dark);
-}
+} */
+
 .user_select_file > input + button{
     background-color: var(--main_colour_dark);
     border-radius: 1px;
@@ -298,38 +302,3 @@ input[type="file"]{
 }
 
 /* -------For if user selects the 'FILE' option END ------*/
-
-
-
-
-/* -------For if user selects the 'HASH' option START ------*/
-
-
-.user_select_hash{
-    display: flex;
-    flex-direction: column;
-    width: 90%;
-    align-items: center;
-}
-.user_select_hash > input:nth-of-type(1){
-    background-color:var(--main_colour_dark);
-    border: 1px solid wheat;
-    color: var(--main_colour_light);
-    margin-top: 10%;
-    width: 100%;
-    height: 40px;
-    text-align: center;
-}
-/* -------For if user selects the 'HASH' option END ------*/
-
-
-
-
-
-
-.box_left{
-}
-
-.box_right{
-
-}

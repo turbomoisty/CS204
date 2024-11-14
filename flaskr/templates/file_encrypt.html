@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hash Check</title>
-    <link rel="stylesheet" href="{{url_for('static', filename='hash_check.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='file_encrypt.css')}}">
     <title>{% block title %}{% endblock %} File Ecryption</title>
 
     <style>
@@ -15,10 +15,10 @@
         
         .back{
             position: fixed;
-            margin-top: 10%;
             font-size: 1.5rem;
             font-weight: bold;
             margin-left: 3%;
+            margin-top: -12em;
             width: 120px;
             transition: transform 0.5s ease-in-out;
             left: 1px;
@@ -54,11 +54,12 @@
       </nav>
       
       <a class="back" href="{{url_for('views.main_page')}}" style="color: aliceblue;"> << Return</a>
-      <div class="lady"></div>
+      <div class="lady" style="z-index: -1;"></div>
 
-      <div class="I_dont_know"></div>
+      <label for="input_file" id='drop_area'>
+        <input type="file" id="input_file">
+      </label>
 
-
-    
+      <script src="{{ url_for('static', filename='file_encrypt.js') }}"></script>
 </body>
 </html>

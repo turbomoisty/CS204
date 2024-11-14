@@ -12,7 +12,6 @@ hash_option_drop_down.addEventListener('change', () =>{
         option_div[i].style.display = 'none';
     }
 
-
     if (selectedValue) {
         const selectedDiv = document.querySelector(`.${selectedValue}`);
         if (selectedDiv) {
@@ -52,10 +51,11 @@ async function generateHash(whatever_side){
     const hashType = document.getElementById('hash_value_type').value;
     const result_answer = document.getElementById('compare_result');
 
+    
 
     if(!userTextInput){
         result_answer.innerText = 'Enter a value first!';
-        return;// Not working??? I don't know why
+        return;
     }
 
     const response = await fetch('/gen_hash', {
@@ -78,9 +78,64 @@ async function generateHash(whatever_side){
         }
 }
 
+async function generateHashFile(whatever_side){
+    console.log("Side:", whatever_side); // Debug log
+
+    const userFileInput = document.getElementById(`file_input_${whatever_side}`);
+    const hashType = document.getElementById('hash_value_type').value;
+    const result_answer = document.getElementById('compare_result');
+
+    if (!userFileInput){
+        result_answer.innerText = 'No valid file detected';
+        return;
+    } 
+
+    const file = userFileInput.files[0];
+    const formData = new FormData();
+    formData.append('file', file);
+    formData.append('hash_type', hashType)
+
+    const response = await fetch('/generate_file_hash', {
+        method: 'POST',
+        body: formData
+    });
+
+    const text = await response.text(); 
+    if (response.ok){
+        const result = JSON.parse(text);
+
+    const outPut = document.getElementById(`hash_output_${whatever_side}_file`)
+    if (outPut){
+        outPut.value = result.hash;
+    } else {
+        console.error(`Output field with ID hash_output_${whatever_side}_file not found.`);
+    }
+    }
+    else {
+            result_answer.innerText = 'Error: ' + text;
+        }
+
+}
+
 async function compareHash(){
-    const hash_l = document.getElementById('hash_output_l').value;
-    const hash_r = document.getElementById('hash_output_r').value;
+
+    const hashType_l = document.getElementById('hash_l').value;
+    const hashType_r = document.getElementById('hash_r').value;
+
+
+    let hash_l, hash_r;
+
+    if(hashType_l === 'Text'){
+        hash_l = document.getElementById('hash_output_l').value;
+    } else if (hashType_l === 'File'){
+        hash_l = document.getElementById('hash_output_l_file').value;
+    }
+
+    if(hashType_r === 'Text_r'){
+        hash_r = document.getElementById('hash_output_r').value;
+    } else if (hashType_r === 'File_r'){
+        hash_r = document.getElementById('hash_output_r_file').value;
+    }
 
     const response = await fetch('/check_hash',{
         method: 'POST',
@@ -106,3 +161,5 @@ async function compareHash(){
         result_answer.style.color = 'red';
     }
 }
+
+
