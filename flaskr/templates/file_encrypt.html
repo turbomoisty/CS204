@@ -57,13 +57,12 @@
       <div class="lady" style="z-index: -1;"></div>
 
       <label for="input_file" id='drop_area'>
-        <input type="file" id="input_file">
+        <input type="file" id="input_file" hidden>
         <div id="file_view">
             <img src="https://raw.githubusercontent.com/turbomoisty/CS204/335b9e6bef7c147f77e1fdbe7db029ec9309101d/flaskr/images/upload_w.png">
-            <p>Drag and drop or click here <br>to upload your file</p>
-
+            <p>Drag and drop or click anywhere within the square <br>to upload your file</p>
+            <span>Upload any images from the desktop</span>
         </div>
-
       </label>
 
       <script src="{{ url_for('static', filename='file_encrypt.js') }}"></script>
