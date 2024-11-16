@@ -61,8 +61,14 @@
         <div id="file_view">
             <img src="https://raw.githubusercontent.com/turbomoisty/CS204/335b9e6bef7c147f77e1fdbe7db029ec9309101d/flaskr/images/upload_w.png">
             <p>Drag and drop or click anywhere within the square <br>to upload your file</p>
-            <span>Upload any images from the desktop</span>
+            <span>Upload any files from the desktop</span>
         </div>
+            <form method="POST" enctype="multipart/form-data" id="option_button">
+                <label for="passcode_input" id="passcode_input_box">
+                <input type="text" id="passcode_input" name="passcode" placeholder="Enter your Passcode" required>
+                <button class="b1" style="background-color: rgb(66, 78, 78);" type="submit" name="action" value="encrypt">Encrypt</button>
+                <button class="b2" style="background-color: rgb(66, 78, 78);" type="submit" name="action" value="decrypt">Decrypt</button>
+            </form>
       </label>
 
       <script src="{{ url_for('static', filename='file_encrypt.js') }}"></script>

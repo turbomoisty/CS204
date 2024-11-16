@@ -1,6 +1,7 @@
-from flask import Blueprint, render_template,request, jsonify
+from flask import Blueprint, render_template,request, jsonify, send_file, redirect
 import hashlib
-
+import os
+from werkzeug.utils import secure_filename
 
 
 views = Blueprint('views', __name__)
@@ -52,13 +53,26 @@ def gen_file_hash():
 
     return jsonify({'error': 'File has not been provided'}),400
 
-
-
 @views.route('/hash_check')
 def hash_check():    
     return render_template('hash_check.html')
 
 
-@views.route('/file_encrypt')
+@views.route('/file_encrypt', methods=['GET', 'POST'])
 def file_encrypt():
+    if request.method == 'POST':
+        passCode = request.form['passcode']
+        action = request.form['action']
+        file = request.files['file']
+        
+        if file:
+            filename = sec_file(file.filename)
+            file_path = os.path.join(views.config['UPLOAD_FOLDER'],  filename)
+            file.save(file_path)
+            
+            hash_key = generate_hash(file, 'SHA256')
+            output_file_p = os.path.join(views.config['ENCRYPTED_FOLDER'], f"{action}_{filename}")
+        
+        
+        
     return render_template('file_encrypt.html')

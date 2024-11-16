@@ -1,6 +1,5 @@
 const user_help = document.getElementsByClassName('option_help') /* small '?' at corner */
 const tool_tip = document.getElementsByClassName('tool_tip_text') /* Display help box.  */
-const chosen_algorithm = document.getElementById('hash_value_type').value;
 
 for (let i = 0; i < user_help.length; i++){
     user_help[i].addEventListener('mouseover', function(){
@@ -46,19 +45,7 @@ for (let i = 0; i < user_help.length; i++){
             }, false) 
         }   /*  -----------------START OF THIRD i ELEMENT-------------------- */
 
-        else if(i===3){
-            if(user_help[i]){
-                tool_tip[i].style.display ='block';
-            }
-
-            tool_tip[i].addEventListener('mousover', ()=>{
-                tool_tip[i].style.display = 'block';
-            }, false)
-
-            tool_tip[i].addEventListener('mouserleave', ()=>{
-                tool_tip.style.display='none';
-            }, false)
-        }   /*  -----------------END OF THIRD i ELEMENT-------------------- */
+  /*  -----------------END OF THIRD i ELEMENT-------------------- */
 
     }); 
 
