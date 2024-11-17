@@ -135,7 +135,7 @@ ul.user_options{
 
 
 
-#file_view > p{
+#file_view > p, p{
     font-size: 1.2em;
     color: var(--main_colour_white);
 }
@@ -179,7 +179,35 @@ ul.user_options{
 
 }
 
-
-
-
 /*   SUMBIT button and Passcode box END*/
+
+
+/* Error box START*/
+
+#error-box > div{
+    background-color: rgba(48, 58, 72,0.2);
+    position: fixed; 
+    inset: 0;
+    z-index: 99;
+}
+ #error-box >div>div{
+    border: 3px solid rgb(248, 103, 103);
+    background-color: var(--main_colour_dark); 
+    color: var(--main_colour_white);
+    padding: 20px;
+    border-radius: 2%;
+    margin: 20% auto; 
+    width: 50%; 
+    text-align: center;
+ }
+/* Error box END*/
+
+
+
+.warning_text{
+    transition: transform 222ms ease-in-out;
+}
+
+.warning_text:hover{
+    transform: scale(1.12);
+}

@@ -81,6 +81,18 @@
               <option value="sha512">sha512</option>
             </select>
       </div>
+
+      {% if error_message %}
+      <div id="error-box" style="display: block;">
+          <div>
+              <div>
+                  <h3>Error: {{ error_message }}</h3>
+                  <button onclick="displayError()">Close</button>
+              </div>
+          </div>
+      </div>
+  {% endif %}
+  
       <div class="hash_input_form">
         <div class="box_left hash_check_box">
                 <label for="hash_check_type_l"></label>

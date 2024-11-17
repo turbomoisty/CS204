@@ -107,13 +107,11 @@ async function generateHashFile(whatever_side){
     const outPut = document.getElementById(`hash_output_${whatever_side}_file`)
     if (outPut){
         outPut.value = result.hash;
-    } else {
-        console.error(`Output field with ID hash_output_${whatever_side}_file not found.`);
     }
     }
     else {
             result_answer.innerText = 'Error: ' + text;
-        }
+    }
 
 }
 
@@ -160,6 +158,12 @@ async function compareHash(){
     } else {
         result_answer.style.color = 'red';
     }
+}
+
+/*Errror mesage Function*/
+const error_box = document.getElementById('error-box')
+function displayError(){
+    error_box.style.display='none';
 }
 
 

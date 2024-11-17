@@ -1,10 +1,12 @@
-from flask import Blueprint, render_template,request, jsonify, send_file, redirect
+from flask import Blueprint, render_template, request, jsonify, send_file
 import hashlib
-import os
-from werkzeug.utils import secure_filename
-
+import base64
+import io
+from cryptography.fernet import Fernet
 
 views = Blueprint('views', __name__)
+
+
 
 @views.route('/')
 @views.route('/main_page')
@@ -18,16 +20,20 @@ def generate_hash(data, hash_type):
         return hash_function.hexdigest()
     except AttributeError:
         return None
-
-
+    
+    
+    
 @views.route('/gen_hash', methods=['POST'])
 def generate_hash_route():
     data = request.json.get('data')
     hash_type = request.json.get('hash_type')
     hash_value = generate_hash(data, hash_type)
-    if hash_value:
-        return jsonify({'hash': hash_value}),200
-    return jsonify({'error': 'Invalid hash'}),400
+    try:
+        if hash_value:
+            return jsonify({'hash': hash_value}),200
+    except Exception as _:
+        
+        return jsonify({'error': 'Invalid hash'}),400
 
 
 @views.route('/check_hash',methods=['POST'])
@@ -50,13 +56,19 @@ def gen_file_hash():
         for segment in file.stream:
             hash_function.update(segment)
         return jsonify({'hash': hash_function.hexdigest()}),200
-
-    return jsonify({'error': 'File has not been provided'}),400
+    
+    no_file = 'No file detected. Pleaase provide one before proceeding.'
+    return render_template('file_encrypt.html', error_message=no_file),400
 
 @views.route('/hash_check')
 def hash_check():    
     return render_template('hash_check.html')
 
+
+
+def generate_file_key(passcode):
+    key = hashlib.sha256(passcode.encode()).digest()
+    return base64.urlsafe_b64encode(key[:32])
 
 @views.route('/file_encrypt', methods=['GET', 'POST'])
 def file_encrypt():
@@ -64,8 +76,30 @@ def file_encrypt():
         passCode = request.form['passcode']
         action = request.form['action']
         file = request.files['file']
-
         
+        if not passCode or not file:
+            no_file = 'No file detected or passcode has not been provided.'
+            return render_template('file_encrypt.html', error_message=no_file),400
         
+        key = generate_file_key(passCode)
+        f_key = Fernet(key)
         
+        print(request.files)
+        print(request.form)
+        file_data = file.read()
+        
+        if action == 'encrypt':
+            encrypted_file = f_key.encrypt(file_data)
+            file_name = file.filename + '.encrypted'
+            return send_file(io.BytesIO(encrypted_file), mimetype='application/octet-stream', as_attachment=True,download_name=file_name)
+        
+        elif action == 'decrypt':
+            try:
+                decrypted_file = f_key.decrypt(file_data)
+                file_name = file.filename.replace('.encrypted','.remove_me')
+                return send_file( io.BytesIO(decrypted_file), mimetype='application/octet-stream', as_attachment=True, download_name=file_name)
+            
+            except Exception as _:
+                error = "Invalid passcode or given format"
+                return render_template('file_encrypt.html', error_message=error), 400
     return render_template('file_encrypt.html')

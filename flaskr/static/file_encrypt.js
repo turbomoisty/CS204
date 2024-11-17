@@ -2,6 +2,8 @@ const drop_area = document.getElementById('drop_area');
 const input_file = document.getElementById('input_file');
 const file_view = document.getElementById('file_view');
 const pass_form = document.getElementById('option_button');
+pass_form.style.display = 'none'; 
+
 
 input_file.addEventListener('change',uploadFile);
 
@@ -9,7 +11,9 @@ function uploadFile(){
         const file = input_file.files[0];
 
         if(file){
-    
+
+            pass_form.style.display = 'grid'; 
+
             let link = URL.createObjectURL(file);
     
             file_view.style.backgroundImage = `url(${link})`;
@@ -27,10 +31,16 @@ function uploadFile(){
                 e.preventDefault();
                 input_file.files = e.dataTransfer.files;
                 uploadFile();
+
             });
-                pass_form.style.display = 'grid'; 
         } else{
             alert('Somthing went wrong!')
         }
     };
-    
+
+
+/*Errror mesage Function*/
+const error_box = document.getElementById('error-box')
+function displayError(){
+    error_box.style.display='none';
+}
