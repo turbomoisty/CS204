@@ -164,6 +164,10 @@ ul.user_options{
     text-align: center;
 }
 
+.b1{
+    margin-left: 1em;
+}
+
 .b1, .b2 {
     width: 80px;
     color: var(--main_colour_white);

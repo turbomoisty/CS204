@@ -2,8 +2,11 @@ const drop_area = document.getElementById('drop_area');
 const input_file = document.getElementById('input_file');
 const file_view = document.getElementById('file_view');
 const pass_form = document.getElementById('option_button');
-pass_form.style.display = 'none'; 
 
+const toggle_p_visibility = document.querySelector('#togglePassword')
+const password_form = document.querySelector('#passcode_input')
+
+pass_form.style.display = 'none'; 
 
 input_file.addEventListener('change',uploadFile);
 
@@ -36,11 +39,23 @@ function uploadFile(){
         } else{
             alert('Somthing went wrong!')
         }
+
+        toggle_p_visibility.addEventListener('click', ()=>{
+
+            const type = password_form.getAttribute("type") === "password" ? "text" : "password";
+            password_form.setAttribute("type", type);
+            
+            // toggle the icon
+            this.classList.toggle("bi-eye");
+            
+        });
+    
     };
 
+    /*Errror mesage Function*/
+    const error_box = document.getElementById('error-box')
+    function displayError(){
+        error_box.style.display='none';
+    }
 
-/*Errror mesage Function*/
-const error_box = document.getElementById('error-box')
-function displayError(){
-    error_box.style.display='none';
-}
+

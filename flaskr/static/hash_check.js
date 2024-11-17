@@ -79,7 +79,7 @@ async function generateHash(whatever_side){
 }
 
 async function generateHashFile(whatever_side){
-    console.log("Side:", whatever_side); // Debug log
+    console.log("Side:", whatever_side); // Debug log to see if parameter does get passed.
 
     const userFileInput = document.getElementById(`file_input_${whatever_side}`);
     const hashType = document.getElementById('hash_value_type').value;
@@ -110,7 +110,7 @@ async function generateHashFile(whatever_side){
     }
     }
     else {
-            result_answer.innerText = 'Error: ' + text;
+        result_answer.innerText = 'Error: ' + text;
     }
 
 }

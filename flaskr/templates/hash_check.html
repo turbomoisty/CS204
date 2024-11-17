@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hash Check</title>
     <link rel="stylesheet" href="{{url_for('static', filename='hash_check.css')}}">
+    <link rel="icon" href="https://raw.githubusercontent.com/turbomoisty/CS204/7b5e3c82dc4f56b89603646b64ff57b1699b5a33/flaskr/images/hash_lock.png">
     <title>{% block title %}{% endblock %} Hash checker</title>
 
     <style>
@@ -82,7 +83,7 @@
             </select>
       </div>
 
-      {% if error_message %}
+    {% if error_message %}  <!-- Can't seem to trigger message. Fix that later.-->
       <div id="error-box" style="display: block;">
           <div>
               <div>
@@ -91,8 +92,8 @@
               </div>
           </div>
       </div>
-  {% endif %}
-  
+    {% endif %}
+
       <div class="hash_input_form">
         <div class="box_left hash_check_box">
                 <label for="hash_check_type_l"></label>
