@@ -64,14 +64,7 @@ def file_encrypt():
         passCode = request.form['passcode']
         action = request.form['action']
         file = request.files['file']
-        
-        if file:
-            filename = sec_file(file.filename)
-            file_path = os.path.join(views.config['UPLOAD_FOLDER'],  filename)
-            file.save(file_path)
-            
-            hash_key = generate_hash(file, 'SHA256')
-            output_file_p = os.path.join(views.config['ENCRYPTED_FOLDER'], f"{action}_{filename}")
+
         
         
         
