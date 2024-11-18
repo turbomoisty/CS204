@@ -28,7 +28,7 @@ h1 {
 }
 
 nav{
-    background-color: #202730;
+    background-color:#181d24;
     display: flex;
     justify-content: center;
     width: 100%;
@@ -90,6 +90,8 @@ ul.user_options{
     justify-content: space-around;
     align-items: center;
     width: 350px;
+    backdrop-filter: blur(0.2em);
+
 
 }
 

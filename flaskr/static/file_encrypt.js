@@ -40,16 +40,16 @@ function uploadFile(){
             alert('Somthing went wrong!')
         }
 
-        toggle_p_visibility.addEventListener('click', ()=>{
+        toggle_p_visibility.addEventListener('click', function(){
 
             const type = password_form.getAttribute("type") === "password" ? "text" : "password";
             password_form.setAttribute("type", type);
             
-            // toggle the icon
+            // icon togglking
             this.classList.toggle("bi-eye");
-            
+            this.classList.toggle("bi-eye-slash")
         });
-    
+
     };
 
     /*Errror mesage Function*/

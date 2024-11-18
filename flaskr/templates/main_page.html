@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="https://raw.githubusercontent.com/turbomoisty/CS204/9c82a72a6be3bd446cb926b0563f374d87031a7b/flaskr/images/shield_nb.png">
+    <link rel="stylesheet" href="{{ url_for('static', filename='main_page.css') }}">
+    <title>{% block title %}{% endblock %} Home</title>
+</head>
+<body>
+    <nav>
+        <ul id="nav_bar">
+            <div>
+                <li class="Home icon" style="margin-bottom: 0.2em;"> AESgis defense</li>
+                <img src="https://raw.githubusercontent.com/turbomoisty/CS204/9c82a72a6be3bd446cb926b0563f374d87031a7b/flaskr/images/shield_nb.png">
+            </div>
+            <div class="log_in_out">
+                {% if g.user %}
+                <li><span>Welcome {{ g.user['username'] }}</span></li>
+                <li><a href="{{ url_for('auth.login') }}">Log out</a></li>
+                {% else %}
+                <li><a href="{{ url_for('auth.register') }}">Register</a>
+                <li><a href="{{ url_for('auth.login') }}">Log in</a></li>
+                {% endif %}
+
+            </div>
+
+        </ul>
+    </nav>
+    
+    <div id="menu">
+        <div id="menu-list">
+            <li class="menu-item"><a href="{{url_for('views.hash_check')}}">Hash Checker</a></li>
+            <li class="menu-item"><a href="{{url_for('views.file_encrypt')}}">File Encryptor</a></li>
+            <li class="menu-item"><a href="/">Password Manager</a></li>
+            <li class="menu-item"><a href="/">Settings</a></li>
+        </div>
+        <div id="pictures">
+            <div id="picture-list">
+                <img src="https://raw.githubusercontent.com/turbomoisty/CS204/9c82a72a6be3bd446cb926b0563f374d87031a7b/flaskr/images/file_lock.png" alt="hash lock">
+                <img src="https://raw.githubusercontent.com/turbomoisty/CS204/9c82a72a6be3bd446cb926b0563f374d87031a7b/flaskr/images/hash_lock.png" alt="file lock">
+                <img src="" alt="pass folder">
+                <img src="" alt="setting gear">
+            </div>
+        </div>
+    
+    </div>
+
+
+    <script src="{{ url_for('static', filename='main_page.js') }}"></script>
+</body>
+</html>

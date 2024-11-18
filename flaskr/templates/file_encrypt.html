@@ -46,28 +46,15 @@
             cursor: pointer;
         }
 
+
+
+
         
     </style>
 </head>
 
 <body>
-    <nav>
-        <div class="header_text">
-            <ul class="user_options">
-          {% if g.user %}
-              <li class = "username_session"><span>Welcome {{ g.user['username'] }}</span>
-              <li><a href="{{ url_for('auth.login') }}">Log Out</a>
-          {% else %}
-              <li class="header_element contact"><a href="">Contact us</a>
-              <li class="header_element register"><a href="{{ url_for('auth.register') }}">Register</a>
-              <li class="header_element login"><a href="{{ url_for('auth.login') }}">Log In</a>
-          {% endif %}
-            </ul>
-        </div>
-      </nav>
 
-
-      
       <a class="back" href="{{url_for('views.main_page')}}" style="color: aliceblue;"> << Return</a>
       <div class="lady" style="z-index: -1;"></div>
 
@@ -93,7 +80,10 @@
                 <input type="file" id="input_file" name="file" hidden required>
                 <label for="passcode_input" id="passcode_input_box">
                 <input type="password" id="passcode_input" name="passcode" placeholder="Enter your Passcode">
-                <i class=" bi bi-eye-slash" id="togglePassword"></i>
+                <i class=" bi-eye-slash" id="togglePassword"></i>
+                <i class=" bi-eye" id="togglePassword" hidden></i>
+
+
 
                 <!-- Style value is needed on both button tag otherwise CSS file won't recognise it?? -->
                 <button class="b1" style="background-color: rgb(66, 78, 78);" type="submit" name="action" value="encrypt">Encrypt</button> 

@@ -11,7 +11,14 @@ views = Blueprint('views', __name__)
 @views.route('/')
 @views.route('/main_page')
 def main_page():
+    return render_template('main_page.html')
+
+
+@views.route('/home')
+def home():
     return render_template('home.html')
+
+
 
 def generate_hash(data, hash_type):
     try:
@@ -70,6 +77,9 @@ def generate_file_key(passcode):
     key = hashlib.sha256(passcode.encode()).digest()
     return base64.urlsafe_b64encode(key[:32])
 
+
+
+#####   Allow user to pick hash algorithm type if I have time   #####
 @views.route('/file_encrypt', methods=['GET', 'POST'])
 def file_encrypt():
     if request.method == 'POST':
@@ -80,7 +90,7 @@ def file_encrypt():
         if not passCode or not file:
             no_file = 'No file detected or passcode has not been provided.'
             return render_template('file_encrypt.html', error_message=no_file),400
-        
+    
         key = generate_file_key(passCode)
         f_key = Fernet(key)
         
@@ -96,6 +106,7 @@ def file_encrypt():
         elif action == 'decrypt':
             try:
                 decrypted_file = f_key.decrypt(file_data)
+                # Current issue --- attemping to replace value to None or '' results in invalid password.
                 file_name = file.filename.replace('.encrypted','.remove_me')
                 return send_file( io.BytesIO(decrypted_file), mimetype='application/octet-stream', as_attachment=True, download_name=file_name)
             
