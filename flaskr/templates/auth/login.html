@@ -1,24 +1,19 @@
 <!DOCTYPE html>
-<html lang="en" style="background-color: #15191F;">
+<html lang="en" >
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}{% endblock %} Register</title>
+    <title>{% block title %}{% endblock %} Log in</title>
+    <link rel="icon" href="https://raw.githubusercontent.com/turbomoisty/CS204/9c82a72a6be3bd446cb926b0563f374d87031a7b/flaskr/images/shield_nb.png">
     <link rel="stylesheet" href="{{url_for('static', filename='login.css')}}">
     <style>
 
-      div form input:nth-child(even){
-        height: 40px;
-        width: 80%;
-        border-radius: 9px;
-        border: 1.1px solid rgb(175, 235, 248);
-        background-color: #202730;
-        color: beige;
-      }
 
-      .header_element.login{
-        background-color: #303a48;
-      }
+    :root{
+      --main_colour_white: aliceblue;
+      --main_colour_dark: rgb(24, 29, 36);
+    }
+
 
       .lady{
         position: absolute;
@@ -29,8 +24,8 @@
         background-size: 480px auto;
         background-position: center;
         top: 20%;
-        z-index: -1;
-        opacity: 0.1;
+        z-index: 0;
+        opacity: 0.02;
       }
 
       .flash{
@@ -78,13 +73,14 @@
     <div class="lady">
     </div>
       <div class="table">
+        <img src="https://raw.githubusercontent.com/turbomoisty/CS204/9c82a72a6be3bd446cb926b0563f374d87031a7b/flaskr/images/shield_nb.png">
         <form id='login_id' method="post">
           <label for="username"></label>
-          <input name="username" id="username" placeholder="Username" style="text-align: center;">
+          <input name="username" id="username" placeholder="Username" style="text-align: left;">
           <label for="password"></label>
-          <input type="password" name="password" id="password" required placeholder="Password" style="text-align:center ;">
-          <input type="submit" value="Login" style="color: azure; border-radius: 12px; background-color: #15191F; 
-          border:1.2px solid rgb(213, 237, 177); width: 80%; height: 20%;">
+          <input type="password" name="password" id="password" required placeholder="Password" style="text-align:left ;">
+          <input id="submit_button" type="submit" value="Login" style=" margin-top: 1em; color: azure; border-radius: 12px; background-color: #15191F; 
+          border:2px solid rgb(213, 237, 177); width: 80%; height: 20%;">
         </form>
       </div>
     </section>

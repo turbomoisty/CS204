@@ -1,6 +1,7 @@
 
 
 :root{
+    --border_setting: 1px solid aliceblue;
     --main_colour_white: aliceblue;
     --main_colour_dark: #181d24;
     --font: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
@@ -17,11 +18,11 @@ body{
 /*   NAV BAR  */
 
 #nav_bar{
+    z-index: 99;
     list-style: none;
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
-    
+    justify-content: space-between;    
 }
 
 li, li > a{
@@ -66,6 +67,8 @@ li > a{
 }
 
 .log_in_out li{
+    z-index: 99;
+
     transition: transform 222ms ease-out;
 
 }
@@ -122,7 +125,7 @@ li > a{
     position: relative;
     display: flex;
     flex-direction: column;
-    gap: 5em;
+    gap: 15em;
     transition: transform 433ms ease-in-out;
 
 }
@@ -133,7 +136,13 @@ li > a{
     transition: opacity 303ms ease-in-out, transform 433ms ease-in-out;
     cursor: pointer;
 
-} 
+}
+
+#picture-list > .icon-item:nth-child(1){ /*Selects Password manager icon*/
+    margin-left: 2em;
+    height: 18em;
+    width: 18em;
+}
 
 #picture-list > .icon-item:nth-child(5){ /*Selects Password manager icon*/
     height: 16em;
@@ -144,27 +153,27 @@ li > a{
 /*Low prority: change icon being slightly offset of the right*/
 #picture-list > .icon-item:nth-child(7){ /*Selects Settings icon */
     margin-top: 4em;
-    margin-left: 0.8em;  /*NOthing happens????*/
-    height: 21em;
-    width: 21em;
+    margin-left: 0.3em;  /*NOthing happens????*/
+    height: 23em;
+    width: 23em;
 }
 
 /*Menu Bar animation*/
 
 #menu[data-active-index="0"] #picture-list {
-    transform: translateY(0%);
+    transform: translateY(0%);   /*Adjust these as necessary, I keep getting alignment issues */
 }
 
 #menu[data-active-index="1"] #picture-list {
-    transform: translateY(-25em); 
+    transform: translateY(-33em); 
 }
 
 #menu[data-active-index="2"] #picture-list {
-    transform: translateY(-50em); 
+    transform: translateY(-65em); 
 }
 
 #menu[data-active-index="3"] #picture-list {
-    transform: translateY(-75em); 
+    transform: translateY(-105em); 
 }
 
 /* Icon selector*/
@@ -199,8 +208,8 @@ li > a{
     transform: scale(0.7);
 }
 
-#text_box_display:nth-of-type(1), #text_box_display:nth-of-type(2){
-    margin-top: -3em;
+#text_box_display:nth-of-type(1n+1){
+    margin-top: -12em;
 }
 
 
@@ -241,6 +250,8 @@ li > a{
     }
     
 }
+
+
 
 
 
