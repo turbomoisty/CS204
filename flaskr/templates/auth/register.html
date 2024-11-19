@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" style="background-color: #15191F;">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,17 +7,19 @@
     <link rel="stylesheet" href="{{url_for('static', filename='register.css')}}">
     <style>
 
+
+    :root{
+      --main_colour_white: aliceblue;
+      --main_colour_dark: #181d24;
+    }
+
       div form input:nth-child(even){
         height: 40px;
         width: 80%;
         border-radius: 9px;
         border: 1.1px solid rgb(175, 235, 248);
-        background-color: #202730;
+        background-color: var(--main_colour_dark);
         color: beige;
-      }
-
-      .header_element.register{
-        background-color: #303a48;
       }
 
       .lady{
@@ -58,17 +60,24 @@
     </style>
 </head>
 <body>
-    <nav>
-      <div class="header_text">
-          <ul class="user_options">
-
-            <li class="header_element contact"><a href="{{ url_for('views.main_page')}}">Contact us</a>
-            <li class="header_element register"><a href="{{ url_for('auth.register') }}">Register</a>
-            <li class="header_element login"><a href="{{ url_for('auth.login') }}">Log In</a>
-
-          </ul>
-      </div>
-    </nav>
+  <nav>
+    <ul id="nav_bar">
+        <div>
+            <li class="Home icon" style="margin-bottom: 0.2em;"> AESgis defense</li>
+            <img src="https://raw.githubusercontent.com/turbomoisty/CS204/9c82a72a6be3bd446cb926b0563f374d87031a7b/flaskr/images/shield_nb.png">
+            <a id="home_link" href="{{ url_for('views.main_page')}}"></a>
+        </div>
+        <div class="log_in_out">
+            {% if g.user %}
+            <li><span>Welcome {{ g.user['username'] }}</span></li>
+            <li><a href="{{ url_for('auth.login') }}">Log out</a></li>
+            {% else %}
+            <li><a href="{{ url_for('auth.register') }}">Register</a>
+            <li><a href="{{ url_for('auth.login') }}">Log in</a></li>
+            {% endif %}
+        </div>
+    </ul>
+</nav>
 
 <div class="content-split">
     <section class="content">

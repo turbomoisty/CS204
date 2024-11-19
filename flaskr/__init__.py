@@ -4,8 +4,6 @@ import os
 
 really_secret_key = os.urandom(32) 
 
-
-
 def create_app(test_config=None):
     app = Flask(__name__, instance_relative_config=True)
     

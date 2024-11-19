@@ -18,7 +18,6 @@ def register():
         db = get_db()
         error = None
         
-        
         if not re.match("^[A-Za-z0-9]+$", username):
             error = 'Username is required'
             
@@ -97,7 +96,7 @@ def logout():
 
 def login_required(view):
     
-    @functools.wraps(view)
+    @functools.wraps(view) #???
     def wrapped_view(**kwargs):
         if g.user is None:
             return redirect(url_for('auth.login'))

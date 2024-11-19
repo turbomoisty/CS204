@@ -67,10 +67,10 @@ def gen_file_hash():
     no_file = 'No file detected. Pleaase provide one before proceeding.'
     return render_template('file_encrypt.html', error_message=no_file),400
 
+
 @views.route('/hash_check')
 def hash_check():    
     return render_template('hash_check.html')
-
 
 
 def generate_file_key(passcode):
@@ -103,6 +103,7 @@ def file_encrypt():
             file_name = file.filename + '.encrypted'
             return send_file(io.BytesIO(encrypted_file), mimetype='application/octet-stream', as_attachment=True,download_name=file_name)
         
+        # Currently there is a bug that will randomly display error box on page load. Unable to replicae it consistenty atm.
         elif action == 'decrypt':
             try:
                 decrypted_file = f_key.decrypt(file_data)

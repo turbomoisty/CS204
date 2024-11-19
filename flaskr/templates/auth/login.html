@@ -49,6 +49,8 @@
         <div>
             <li class="Home icon" style="margin-bottom: 0.2em;"> AESgis defense</li>
             <img src="https://raw.githubusercontent.com/turbomoisty/CS204/9c82a72a6be3bd446cb926b0563f374d87031a7b/flaskr/images/shield_nb.png">
+            <a id="home_link" href="{{ url_for('views.main_page') }}"></a>
+
         </div>
         <div class="log_in_out">
             {% if g.user %}

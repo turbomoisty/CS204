@@ -135,17 +135,16 @@ li > a{
 
 } 
 
-
-
-#picture-list > .icon-item:nth-child(5){
+#picture-list > .icon-item:nth-child(5){ /*Selects Password manager icon*/
     height: 16em;
     width: 16em;
     margin-left: 3em;
 }
 
 /*Low prority: change icon being slightly offset of the right*/
-#picture-list > .icon-item:nth-child(7){
-    margin-left: 1em;  /*NOthing happens????*/
+#picture-list > .icon-item:nth-child(7){ /*Selects Settings icon */
+    margin-top: 4em;
+    margin-left: 0.8em;  /*NOthing happens????*/
     height: 21em;
     width: 21em;
 }
@@ -183,7 +182,6 @@ li > a{
 #menu[data-active-index="2"] #picture-list> .icon-item:nth-child(5){
     opacity: 1;
     transform: scale(1.3);
-
 }
 
 #menu[data-active-index="3"] #picture-list> .icon-item:nth-child(7){
@@ -231,7 +229,7 @@ li > a{
 }
 
 
-
+/* animation for text box*/
 @keyframes pop-up{
     from{
         transform: translateX(90%);
