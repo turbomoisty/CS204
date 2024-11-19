@@ -50,20 +50,7 @@
     </style>
 </head>
 <body>
-    <nav>
-        <div class="header_text">
-            <ul class="user_options">
-          {% if g.user %}
-              <li class = "username_session"><span>Welcome {{ g.user['username'] }}</span>
-              <li><a href="{{ url_for('auth.login') }}">Log Out</a>
-          {% else %}
-              <li class="header_element contact"><a href="">Contact us</a>
-              <li class="header_element register"><a href="{{ url_for('auth.register') }}">Register</a>
-              <li class="header_element login"><a href="{{ url_for('auth.login') }}">Log In</a>
-          {% endif %}
-            </ul>
-        </div>
-      </nav>
+
       <div class="lady"></div>
       <a class="back" href="{{url_for('views.main_page')}}" style="color: aliceblue;"> << Return</a>
       <div id="hash_segment">
@@ -139,7 +126,7 @@
                     <input type="text" id="text_input_r" placeholder="Enter word or sentence to hash"name="text_input_r">
                     <button class="hash_generate" onclick="generateHash('r')">Generate Hash</button>
                     <label for="hash_output_r">Hash Output</label>
-                    <input type="text" id="hash_output_r" name="hash_output_r" readonly>
+                    <input type="text" id="hash_output_r" name="hash_output_r">
                 </div>
 
                 <!-- FILE -->
