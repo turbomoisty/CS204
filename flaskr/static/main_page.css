@@ -98,7 +98,7 @@ li > a{
 }
 
 #menu-list:hover > .menu-item{
-    opacity: 0.4;
+    opacity: 0.2;
     transition: transform 433ms ease-in-out, opacity 433ms ease-out;
 }
 
@@ -129,19 +129,25 @@ li > a{
 #picture-list > .icon-item{
     height: 20em;
     width: 20em;
-    opacity: 0.06;
-    transition: opacity 433ms ease-in-out, transform 433ms ease-in-out;
+    opacity: 0;
+    transition: opacity 303ms ease-in-out, transform 433ms ease-in-out;
     cursor: pointer;
+
 } 
 
+
+
 #picture-list > .icon-item:nth-child(5){
-    height: 18em;
-    width: 18em;
+    height: 16em;
+    width: 16em;
+    margin-left: 3em;
 }
 
 /*Low prority: change icon being slightly offset of the right*/
-#picture-list > .icon-item:nth-child(4){
-    margin-right: 2em;  /*NOthing happens????*/
+#picture-list > .icon-item:nth-child(7){
+    margin-left: 1em;  /*NOthing happens????*/
+    height: 21em;
+    width: 21em;
 }
 
 /*Menu Bar animation*/
@@ -186,11 +192,21 @@ li > a{
 
 }
 
+/* Text box show when hovering on icon*/
+
+
+#menu #picture-list> .icon-item:nth-child(odd):hover {
+    z-index: 999;
+    opacity: 0.07;
+    transform: scale(0.7);
+}
+
+#text_box_display:nth-of-type(1), #text_box_display:nth-of-type(2){
+    margin-top: -3em;
+}
+
+
 /* MEUN ICON END*/
-
-
-
-
 
 /*ICON TEXT*/
 
@@ -206,38 +222,27 @@ li > a{
     font-family: var(--font);
     border-radius: 4px;
     border: 1px solid var(--main_colour_white);
-    backdrop-filter: blur(0.2em);
-    width: 15em;
+    backdrop-filter: blur(0.6em);
+    width: 17em;
     height: 15em;
     margin-left: 1.9em;
     transform: translateY(-22em);
+    padding: 1em 1em;
 }
 
 
-#text_box_display{
-    display: none;
-}
-/* #picture-list > .icon-item:nth-of-type(1) + div > p {
 
-}
+@keyframes pop-up{
+    from{
+        transform: translateX(90%);
+    }
 
-#picture-list > .icon-item:nth-of-type(2) + div > p {
-    transform: translateY(-22em);
+    to{
+        transform: translateX(0%);
 
-}
-
-#picture-list > .icon-item:nth-of-type(3)+ div  > p {
-    transform: translateY(-22em);
-
-} */
-
-
-
-/* #menu[data-active-index="1"] #picture-list > .icon-item + .icon-description:nth-of-type(3){
+    }
     
-} */
-
-
+}
 
 
 
