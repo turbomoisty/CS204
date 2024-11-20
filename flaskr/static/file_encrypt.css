@@ -133,11 +133,11 @@ a:visited{
 
 
 #drop_area{
-    padding: 10px;
-    width: 40em;
+    z-index: 12;
+    padding: 30px;
+    width: 42em;
     height: 50vh;
     background-color: transparent;
-    margin-top: 5%;
     border-radius: 10%;
     text-align: center;
 

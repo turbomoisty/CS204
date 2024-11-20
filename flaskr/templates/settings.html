@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settings</title>
+    <link rel="icon" href="https://raw.githubusercontent.com/turbomoisty/CS204/9c82a72a6be3bd446cb926b0563f374d87031a7b/flaskr/images/shield_nb.png">
+    <link rel="stylesheet" href="{{ url_for('static', filename='settings.css') }}">
+    <style>
+        :root{
+            --border_setting: 1px solid aliceblue;
+            --main_colour_white: aliceblue;
+            --main_colour_dark: #181d24;
+            --font: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        }
+
+        h2{
+            margin-top: 1px;
+            font-family: var(--font);
+            color: var(--main_colour_white);
+            font-size: 3em;
+        }
+
+        .error_message{
+            position: absolute;
+            z-index: 999;
+            margin-top: -1em;
+            top: 10%;
+            margin-right: 2em;
+        }
+
+    </style>
+</head>
+<body>
+    <nav>
+        <ul id="nav_bar">
+            <div>
+                <li class="Home icon" style="margin-bottom: 0.2em;"> AESgis defense</li>
+                <img src="https://raw.githubusercontent.com/turbomoisty/CS204/9c82a72a6be3bd446cb926b0563f374d87031a7b/flaskr/images/shield_nb.png">
+                <a id="home_link" href="{{ url_for('views.main_page') }}"></a>
+            </div>
+
+        </ul>
+    </nav>
+
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+      <ul class="error_message">
+        {% for message in messages %}
+          <li style="list-style-type: none;">{{ message }}</li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+  {% endwith %}
+
+
+  <div class="lady"></div>
+  <h2>Update Account Details</h2>
+
+    <form method="post">
+        <div>
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" value="{{ user['username'] }}" required>
+        </div>
+
+        <div>
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" value="{{ user['email'] }}" required>
+        </div>
+
+        <div>
+            <label for="password">Current Password:</label>
+            <input type="password" id="password" name="password" required>
+        </div>
+
+        <div>
+            <label for="new_password">New Password:</label>
+            <input type="password" id="new_password" name="new_password" required>
+        </div>
+
+        <div>
+            <label for="confirm_password">Confirm New Password:</label>
+            <input type="password" id="confirm_password" name="confirm_password" required>
+        </div>
+
+        <div>
+            <button id="submit_button" type="submit">Update</button>
+        </div>
+    </form>
+    </body>
+</html>

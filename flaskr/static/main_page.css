@@ -179,7 +179,7 @@ li > a{
 }
 
 .lady{
-    transition: transform 633ms 80ms ease-in-out;
+    transition: transform 333ms 0ms ease-in-out;
 }
 
 /*background pic*/

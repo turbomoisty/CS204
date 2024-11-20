@@ -67,15 +67,6 @@
                 <img src="https://raw.githubusercontent.com/turbomoisty/CS204/9c82a72a6be3bd446cb926b0563f374d87031a7b/flaskr/images/shield_nb.png">
                 <a id="home_link" href="{{ url_for('views.main_page') }}"></a>
             </div>
-            <div class="log_in_out">
-                {% if g.user %}
-                <li><span>Welcome {{ g.user['username'] }}</span></li>
-                <li><a href="{{ url_for('auth.login') }}">Log out</a></li>
-                {% else %}
-                <li><a href="{{ url_for('auth.register') }}">Register</a>
-                <li><a href="{{ url_for('auth.login') }}">Log in</a></li>
-                {% endif %}
-            </div>
         </ul>
     </nav>
       <div class="lady"></div>

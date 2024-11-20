@@ -3,11 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hash Check</title>
     <link rel="stylesheet" href="{{url_for('static', filename='file_encrypt.css')}}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css" />
     <link rel="icon" href="https://raw.githubusercontent.com/turbomoisty/CS204/82aac785ebb13c02cbe7fc785ab2ff9df37ad2b2/flaskr/images/file_lock.png">
-
     <title>{% block title %}{% endblock %} File Ecryption</title>
 
     <style>
@@ -51,16 +49,7 @@
                 <a id="home_link" href="{{ url_for('views.main_page') }}"></a>
     
             </div>
-            <div class="log_in_out">
-                {% if g.user %}
-                <li><span>Welcome {{ g.user['username'] }}</span></li>
-                <li><a href="{{ url_for('auth.login') }}">Log out</a></li>
-                {% else %}
-                <li><a href="{{ url_for('auth.register') }}">Register</a>
-                <li><a href="{{ url_for('auth.login') }}">Log in</a></li>
-                {% endif %}
-            </div>
-    
+
         </ul>
     </nav>      
       <div class="lady" style="z-index: -1;"></div>

@@ -58,4 +58,3 @@ function uploadFile(){
         error_box.style.display='none';
     }
 
-

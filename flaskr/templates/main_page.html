@@ -47,29 +47,27 @@
     <nav>
         <ul id="nav_bar">
             <div>
-                <li class="Home icon" style="margin-bottom: 0.2em;"> AESgis defense</li>
+                <li class="Home icon" style="margin-bottom: 0.2em;"> <a href="{{url_for('views.start_page') }}">AESgis defense</a></li>
                 <img src="https://raw.githubusercontent.com/turbomoisty/CS204/9c82a72a6be3bd446cb926b0563f374d87031a7b/flaskr/images/shield_nb.png">
             </div>
             <div class="log_in_out">
-                {% if g.user %}
-                <li><span>Welcome {{ g.user['username'] }}</span></li>
+                {% if current_user.is_authenticated %}
+                <li><span>Welcome {{ current_user['username'] }}</span></li>
                 <li><a href="{{ url_for('auth.login') }}">Log out</a></li>
                 {% else %}
                 <li><a href="{{ url_for('auth.register') }}">Register</a>
                 <li><a href="{{ url_for('auth.login') }}">Log in</a></li>
                 {% endif %}
-
             </div>
-
         </ul>
     </nav>
 
     <div id="menu">
         <div id="menu-list">
-            <li class="menu-item"><a href="{{url_for('views.hash_check')}}">Hash Checker</a></li>
-            <li class="menu-item"><a href="{{url_for('views.file_encrypt')}}">File Encryptor</a></li>
+            <li class="menu-item"><a href="{{url_for('views.hash_check')}}">Hash Verifier</a></li>
+            <li class="menu-item"><a href="{{url_for('views.file_encrypt')}}">File Encryption</a></li>
             <li class="menu-item"><a href="/">Password Manager</a></li>
-            <li class="menu-item"><a href="{{url_for('views.home')}}">Settings</a></li>
+            <li class="menu-item"><a href="{{url_for('views.settings')}}">Settings</a></li>
         </div>
 
         <div class="lady"></div>
@@ -82,8 +80,8 @@
                 </div>
                 <img class="icon-item" src="https://raw.githubusercontent.com/turbomoisty/CS204/9c82a72a6be3bd446cb926b0563f374d87031a7b/flaskr/images/file_lock.png" alt="hash lock">
                 <div id="text_box_display">
-                    <p class="hash-lock icon-description"> <b>Using a File Encrypter</b><br>You can easily encrypt any files through a passkey that only you know. Contents of ecrypted files are converted into 
-                        unreadable code, so even if someone were to grab a hold of you file, if they don't know the key you created, the data remains protected.</p>
+                    <p class="hash-lock icon-description"> <b>Using a File Encrypter</b><br>You can easily encrypt any files through a passkey that only you know. Contents of encrypted files are converted into 
+                        unreadable code, so even if someone were to grab a hold of you file, if they don't know the passkey you created, the data remains protected.</p>
                 </div>
 
                 <img class="icon-item" src="https://raw.githubusercontent.com/turbomoisty/CS204/6b74a4bda91d83168f3f3f8835b60e60f7007277/flaskr/images/pass_manager.png" alt="pass folder">
@@ -93,7 +91,7 @@
                 
                 <img class="icon-item" src="https://raw.githubusercontent.com/turbomoisty/CS204/6b74a4bda91d83168f3f3f8835b60e60f7007277/flaskr/images/shield_nb.png" alt="setting gear">
                 <div id="text_box_display">
-                    <p class="settings-text icon-description"> <b>Account Settings</b><br>Personalise your account.</p>
+                    <p class="settings-text icon-description"> <b>Account Settings</b><br>Manage your account credentials.</p>
                 </div>
 
 

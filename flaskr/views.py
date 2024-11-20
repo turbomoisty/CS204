@@ -1,16 +1,16 @@
-from flask import Blueprint, render_template, request, jsonify, send_file
-from flask_login import login_required, current_user
+from flask import Blueprint, render_template, request, jsonify, send_file, redirect, url_for,flash
+from flaskr.db import get_db
+from flask_login import current_user,login_required
 import hashlib
+from  werkzeug.security import generate_password_hash
 import base64
+import re
 import io
-from datetime import datetime
 from cryptography.fernet import Fernet
-from . import db
-from werkzeug.security import generate_password_hash
 
 views = Blueprint('views', __name__)
 
-def generate_hash(data, hash_type):
+def generate_hash(data, hash_type): #Generated hash 
     try:
         hash_function = getattr(hashlib, hash_type)()
         hash_function.update(data.encode('utf-8'))
@@ -62,7 +62,14 @@ def generate_file_key(passcode): ##just for file encryption
 
 ##----Page routes-----s##
 
+
+
 @views.route('/')
+@views.route('start_page')
+def start_page():
+    return render_template('start_page.html')
+
+
 @views.route('/main_page')
 def main_page():
     return render_template('main_page.html')
@@ -77,33 +84,11 @@ def home():
 def hash_check():    
     return render_template('hash_check.html')
 
-
-@views.route('/password_manager', methods=['GET','POST'])
-def password_manager():
-    if request.method == 'POST':
-        file_name = request.form['file_name']
-        file_password = request.form['file_password']
         
-        if not file_name or file_password:
-            no_info = 'File name not given or has no password.'
-            return render_template('password_manager', error_message=no_info), 400
-        
-        hash_password = generate_password_hash(file_password)
-        new_manager_entry = {
-            'file_title': file_name,
-            'file_password': file_password,
-            'user_id': current_user.id,
-            'created_date':datetime.now()
-        }
-        
-        
-        db.execute(' INSERT INTO user_file(title, file_password, user_id, created_date)')
-        
-    
-
 
 #####   Allow user to pick hash algorithm type if I have time   #####
 @views.route('/file_encrypt', methods=['GET', 'POST'])
+@login_required
 def file_encrypt():
     if request.method == 'POST':
         passCode = request.form['passcode']
@@ -135,3 +120,45 @@ def file_encrypt():
                 error = "Invalid passcode or given format"
                 return render_template('file_encrypt.html', error_message=error), 400
     return render_template('file_encrypt.html')
+
+
+@views.route('/settings', methods=['GET', 'POST'])
+@login_required
+def settings():
+    db = get_db()
+    user_id = current_user.id
+    error = None
+    # Fetch the current user's details
+    user = db.execute('SELECT * FROM user WHERE id = ?', (user_id,)).fetchone()
+    
+    if request.method == 'POST':
+        username = request.form['username']
+        email = request.form['email']
+        password = request.form['password']
+        new_password = request.form['new_password']
+        confirm_password = request.form['confirm_password']
+        
+        if not username or not email:
+            error = 'Username and email are required.'
+        elif new_password and new_password != confirm_password:
+            error = 'Passwords do not match.'
+        elif new_password and len(new_password) < 8:
+            error = '--Password must be at least 8 characters long--'
+        elif not re.match("^[a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$", email):
+            error = 'Invalid email format.'
+            
+        elif new_password == password:
+            error = 'your new password cannot be'
+        if error is None:
+            try:
+                if new_password:
+                    password = generate_password_hash(new_password)
+                db.execute('UPDATE user SET username = ?, email = ?, password = ? WHERE id = ?',
+                           (username, email, password, user_id))
+                db.commit()
+                flash('Account updated successfully.')
+                return redirect(url_for('views.main_page'))
+            except db.IntegrityError:
+                error = 'Username or email already taken.'
+        flash(error)
+    return render_template('settings.html', user=user)

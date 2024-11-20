@@ -92,23 +92,27 @@ a:visited{
 
 }
 
-
-
 /*NAV BAR END */
 
-
+.flash{
+    margin-left: -3em;
+}
 
 /* Log in form START*/
 
 
 /*shield animation*/
-.table >img:hover{
-    animation: spin 733ms ease-in-out reverse;
+.table >img{
+    animation: spin 20s linear infinite;
 }
 
 @keyframes spin{
     0%{
         transform: rotate(0deg);
+    }
+
+    50%{
+        transform: rotate(180deg);
     }
 
     100%{

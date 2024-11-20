@@ -10,9 +10,9 @@ CREATE TABLE user (
 
 CREATE TABLE user_file (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
+    user_id INTEGER NOT NULL,
     file_title TEXT NOT NULL,
     file_password TEXT NOT NULL,
-    user_id INTEGER NOT NULL,
     created_date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (user_id) REFERENCES user (id) ON DELETE CASCADE
 );
