@@ -7,35 +7,39 @@
     <link rel="stylesheet" href="{{url_for('static', filename='register.css')}}">
     <style>
 
-
     :root{
       --main_colour_white: aliceblue;
       --main_colour_dark: #181d24;
+      --font: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+
     }
 
       div form input:nth-child(even){
         height: 40px;
-        width: 80%;
-        border-radius: 9px;
-        border: 1.1px solid rgb(175, 235, 248);
-        background-color: var(--main_colour_dark);
-        color: beige;
+        width: 20em;
+        border: none;
+        border-bottom: 1px solid var(--main_colour_white) !important; 
+        background-color:rgb(24, 29, 36,0.2);
+      }
+
+      div form input:nth-child(even):focus{
+        color: aliceblue;
+        outline: none;
       }
 
       .lady{
         position: absolute;
         background: url('https://raw.githubusercontent.com/turbomoisty/CS204/4f00e881a0c3b2c60d82b4f06008be6fd4ae298a/flaskr/images/lady.png')
         no-repeat ;
-        margin-top: -3%;
-        padding: 250px;
-        background-size: 480px auto;
+        margin-right: 50em;
+        padding: 500px;
+        background-size: 850px auto;
         background-position: center;
-        top: 20%;
+        margin-top: 5em;
         z-index: -1;
-        opacity: 0.1;
-
-
+        opacity: 0.02;
       }
+
       .flash{
         position:absolute;
         color: white;
@@ -65,7 +69,7 @@
         <div>
             <li class="Home icon" style="margin-bottom: 0.2em;"> AESgis defense</li>
             <img src="https://raw.githubusercontent.com/turbomoisty/CS204/9c82a72a6be3bd446cb926b0563f374d87031a7b/flaskr/images/shield_nb.png">
-            <a id="home_link" href="{{ url_for('views.main_page')}}"></a>
+            <a id="home_link" href="{{ url_for('views.main_page') }}"></a>
         </div>
         <div class="log_in_out">
             {% if g.user %}
@@ -92,14 +96,15 @@
     </div>
       <div class="table">
         <form id='register_id'method="post">
-          <label for="username">Username</label>
-          <input name="username" id="username" placeholder="Guido van Rossum" style="text-align: center;">
-          <label for="password">Password</label>
-          <input type="password" name="password" id="password" placeholder="examp1eP@55s0rd" style="text-align: center;">
-          <label for="email">Email</label>
-          <input type="email entry" name="email" id="email" placeholder="example@email.com" style="text-align: center" required>
+          <label id="form_text" for="username">Username</label>
+          <input name="username" id="username" placeholder="Guido van Rossum" style="text-align: left;">
+          <label id="form_text" for="password">Password</label>
+          <input type="password" name="password" id="password" placeholder="examp1ePass" style="text-align: left;">
+          <label id="form_text" for="email" style="margin-right: 14em;">Email</label>
+          <input type="email entry" name="email" id="email" placeholder="example@email.com" style="text-align: left;" required>
           <input class="submit_button" type="submit" value="Register" style="color: azure; border-radius: 12px; background-color: #15191F; 
-          border:1.2px solid rgb(213, 237, 177); width: 80%; height: 20%;">
+          border:2px solid rgb(213, 237, 177); width: 80%; height: 2.5em; text-align: center; margin-top: 1.5em;">
+          <p style="margin-bottom: -1em; font-family: var(--font); color: var(--main_colour_white); ">Already a user? <a style="font-size: 1em;" href="{{ url_for('auth.login') }}"><u>Log in</u></a></p>
         </form>
       </div>
     </section>

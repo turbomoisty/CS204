@@ -91,9 +91,6 @@ a:visited{
     transform: scale(1.2);
 
 }
-
-
-
 /*NAV BAR END */
 
 
@@ -110,42 +107,21 @@ ul.user_options{
     margin: auto;
 }
 
-.header_element{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 90px;
-    height: 40px;
-    border-radius: 5%;
-    transition: background-color 0.2s ease-in;
-    color: #EAD8B1;
-}
-
-.header_element:visited{
-    text-decoration: none;
-}
-
-.header_element:hover{
-    background-color: #303a48;
-
-}
 
 .table{
-    margin-top: 10%;
-    border: 0.2px solid white;
+    margin-top: 4em;
+    border: 1px solid white;
     border-radius: 12px;
     height: 400px;
     width: 300px;
     box-shadow:
-    0em 0em 1em 1.3em rgba(0, 0, 0, 0.3);
+    0em 0em 1em 0.4em rgba(0, 0, 0, 0.3);
     display: flex;
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
     width: 350px;
-    backdrop-filter: blur(0.2em);
-
-
+    backdrop-filter: blur(0.5em);
 }
 
 .table form{
@@ -161,10 +137,18 @@ ul.user_options{
 }
 
 
-
+/* 
 #register_id label{
-    color: rgb(114, 113, 113);
+    color: rgb(58, 21, 21);
     margin-left: -150px;
+} */
+
+
+#form_text{
+    margin-bottom: -1em;
+    margin-right: 12em;
+    font-family: var(--font);
+    color: var(--main_colour_white);
 }
 
 

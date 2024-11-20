@@ -1,24 +1,14 @@
 from flask import Blueprint, render_template, request, jsonify, send_file
+from flask_login import login_required, current_user
 import hashlib
 import base64
 import io
+from datetime import datetime
 from cryptography.fernet import Fernet
+from . import db
+from werkzeug.security import generate_password_hash
 
 views = Blueprint('views', __name__)
-
-
-
-@views.route('/')
-@views.route('/main_page')
-def main_page():
-    return render_template('main_page.html')
-
-
-@views.route('/home')
-def home():
-    return render_template('home.html')
-
-
 
 def generate_hash(data, hash_type):
     try:
@@ -28,9 +18,8 @@ def generate_hash(data, hash_type):
     except AttributeError:
         return None
     
-    
-    
-@views.route('/gen_hash', methods=['POST'])
+
+@views.route('/gen_hash', methods=['POST']) #For the hash check page, when selecting has value
 def generate_hash_route():
     data = request.json.get('data')
     hash_type = request.json.get('hash_type')
@@ -50,8 +39,6 @@ def compare_hash():
     compare_result = (hash_left == hash_right)
     return jsonify({'match': compare_result}), 200
 
-
-
 @views.route('/generate_file_hash', methods=['POST'])
 def gen_file_hash():
     file = request.files.get('file')
@@ -68,15 +55,51 @@ def gen_file_hash():
     return render_template('file_encrypt.html', error_message=no_file),400
 
 
+def generate_file_key(passcode): ##just for file encryption
+    key = hashlib.sha256(passcode.encode()).digest()
+    return base64.urlsafe_b64encode(key[:32])
+
+
+##----Page routes-----s##
+
+@views.route('/')
+@views.route('/main_page')
+def main_page():
+    return render_template('main_page.html')
+
+
+@views.route('/home')
+def home():
+    return render_template('home.html')
+
+
 @views.route('/hash_check')
 def hash_check():    
     return render_template('hash_check.html')
 
 
-def generate_file_key(passcode):
-    key = hashlib.sha256(passcode.encode()).digest()
-    return base64.urlsafe_b64encode(key[:32])
-
+@views.route('/password_manager', methods=['GET','POST'])
+def password_manager():
+    if request.method == 'POST':
+        file_name = request.form['file_name']
+        file_password = request.form['file_password']
+        
+        if not file_name or file_password:
+            no_info = 'File name not given or has no password.'
+            return render_template('password_manager', error_message=no_info), 400
+        
+        hash_password = generate_password_hash(file_password)
+        new_manager_entry = {
+            'file_title': file_name,
+            'file_password': file_password,
+            'user_id': current_user.id,
+            'created_date':datetime.now()
+        }
+        
+        
+        db.execute(' INSERT INTO user_file(title, file_password, user_id, created_date)')
+        
+    
 
 
 #####   Allow user to pick hash algorithm type if I have time   #####
@@ -93,9 +116,6 @@ def file_encrypt():
     
         key = generate_file_key(passCode)
         f_key = Fernet(key)
-        
-        print(request.files)
-        print(request.form)
         file_data = file.read()
         
         if action == 'encrypt':

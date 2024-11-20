@@ -127,7 +127,6 @@ li > a{
     flex-direction: column;
     gap: 15em;
     transition: transform 433ms ease-in-out;
-
 }
 #picture-list > .icon-item{
     height: 20em;
@@ -158,6 +157,9 @@ li > a{
     width: 23em;
 }
 
+
+
+
 /*Menu Bar animation*/
 
 #menu[data-active-index="0"] #picture-list {
@@ -174,6 +176,28 @@ li > a{
 
 #menu[data-active-index="3"] #picture-list {
     transform: translateY(-105em); 
+}
+
+.lady{
+    transition: transform 633ms 80ms ease-in-out;
+}
+
+/*background pic*/
+
+#menu[data-active-index="0"] .lady {
+    transform: translateY(0%);
+}
+
+#menu[data-active-index="1"] .lady {
+    transform: translateY(1.2em); 
+}
+
+#menu[data-active-index="2"] .lady {
+    transform: translateY(1.4em); 
+}
+
+#menu[data-active-index="3"] .lady {
+    transform: translateY(1.6em); 
 }
 
 /* Icon selector*/

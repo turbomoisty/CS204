@@ -103,7 +103,7 @@ a:visited{
 
 /*shield animation*/
 .table >img:hover{
-    animation: spin 733ms ease-in-out 1;
+    animation: spin 733ms ease-in-out reverse;
 }
 
 @keyframes spin{
@@ -159,6 +159,11 @@ div form input:nth-child(even){
     border-bottom: 1px solid var(--main_colour_white);
     background-color:rgb(24, 29, 36,0.2);
     color: beige;
+  }
+
+  div form input:nth-child(even):focus{
+    color: var(--main_colour_white);
+    outline: none;
   }
 
 .table form{

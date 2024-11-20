@@ -1,9 +1,9 @@
 :root{
     --main_colour_white: aliceblue;
     --main_colour_dark: #181d24;
+    --font: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+
 }
-
-
 
 a{
     text-decoration: none;
@@ -25,6 +25,8 @@ body{
     align-items: center;
     width: 100%;
     margin: auto;
+    overflow: hidden;
+
 }
 
 h1 {
@@ -36,26 +38,107 @@ h1 {
 /*  -----------------Header Element Starts Here-------------------- */
 
 
+
+/*NAV BAR*/
+
+a, .Home{
+    color: var(--main_colour_white);
+    text-decoration: none;
+    font-family: var(--font);
+    font-size: 1.2em;
+    }
+    
+a:visited{
+    text-decoration: none;
+    color: var(--main_colour_white);
+    transition: colour 0.2s ease;
+    }
+
+#nav_bar{
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 95vw;
+}
+
+#home_link{
+    position: absolute;
+    z-index: 4;
+    height: 2em;
+    width: 7em;
+    cursor: pointer;
+}
+
+#nav_bar > div {
+    position: relative;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+}
+
+#nav_bar > div > img{
+    height: 2.5em;
+    width: auto;
+}
+
+#nav_bar > div > img:hover{
+    animation: spin 733ms ease-in-out 1;
+}
+
+@keyframes spin{
+    0%{
+        transform: rotate(0deg);
+    }
+
+    100%{
+        transform: rotate(360deg);
+    }
+}
+
+.log_in_out{
+    font-family: var(--font);
+    gap: 2em;
+    margin-right: 3em;
+}
+
+.log_in_out li{
+    transition: transform 222ms ease-out;
+
+}
+
+.log_in_out li:hover{
+    cursor: pointer;
+    transform: scale(1.2);
+}
+
+
+
+/*NAV BAR END */
+
+
+
 .lady{
     position: absolute;
     background: url('https://raw.githubusercontent.com/turbomoisty/CS204/4f00e881a0c3b2c60d82b4f06008be6fd4ae298a/flaskr/images/lady.png')
     no-repeat ;
-    margin-top: -3%;
-    padding: 250px;
-    background-size: 480px auto;
+    margin-right: 50em;
+    padding: 550px;
+    background-size: 840px auto;
     background-position: center;
-    top: 114px;
+    margin-top: 15em;
     z-index: -1;
-    opacity: 0.06;
+    opacity: 0.03;
   }
+
 
 #drop_area{
     padding: 10px;
-    width: 25em;
+    width: 40em;
     height: 50vh;
     background-color: transparent;
     margin-top: 5%;
-    border-radius: 5%;
+    border-radius: 10%;
     text-align: center;
 
 }
@@ -67,7 +150,7 @@ h1 {
     align-items: center;
     width: 100%;
     height: 100%;
-    border-radius: 5%;
+    border-radius: 2%;
     background-color: rgba(48, 58, 72,0.2);
     border: 2px dashed var(--main_colour_white);
     background-position: center;
@@ -158,6 +241,7 @@ h1 {
 
 
 .warning_text{
+    font-family:  var(--font);
     transition: transform 222ms ease-in-out;
 }
 

@@ -11,25 +11,13 @@
     <title>{% block title %}{% endblock %} File Ecryption</title>
 
     <style>
+
+        :root{
+            --font: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        }
         
         html{
             background-color: #15191F;
-        }
-        
-        .back{
-            position: fixed;
-            font-size: 1.5rem;
-            font-weight: bold;
-            margin-left: 3%;
-            margin-top: -12em;
-            width: 120px;
-            transition: transform 0.5s ease-in-out;
-            left: 1px;
-        }
-
-        .back:hover{
-            transform: scale(1.1);
-            cursor: pointer;
         }
 
         .username_session{
@@ -46,18 +34,36 @@
             cursor: pointer;
         }
 
-
-
-
-        
+        li > span{
+            font-family: var(--font) !important;
+            color: aliceblue !important;
+            font-size: 1.2em;
+        }
     </style>
 </head>
 
 <body>
-
-      <a class="back" href="{{url_for('views.main_page')}}" style="color: aliceblue;"> << Return</a>
+    <nav>
+        <ul id="nav_bar">
+            <div>
+                <li class="Home icon" style="margin-bottom: 0.2em;"> AESgis defense</li>
+                <img src="https://raw.githubusercontent.com/turbomoisty/CS204/9c82a72a6be3bd446cb926b0563f374d87031a7b/flaskr/images/shield_nb.png">
+                <a id="home_link" href="{{ url_for('views.main_page') }}"></a>
+    
+            </div>
+            <div class="log_in_out">
+                {% if g.user %}
+                <li><span>Welcome {{ g.user['username'] }}</span></li>
+                <li><a href="{{ url_for('auth.login') }}">Log out</a></li>
+                {% else %}
+                <li><a href="{{ url_for('auth.register') }}">Register</a>
+                <li><a href="{{ url_for('auth.login') }}">Log in</a></li>
+                {% endif %}
+            </div>
+    
+        </ul>
+    </nav>      
       <div class="lady" style="z-index: -1;"></div>
-
       <label for="input_file" id='drop_area'>
         <div id="file_view">
             <img src="https://raw.githubusercontent.com/turbomoisty/CS204/335b9e6bef7c147f77e1fdbe7db029ec9309101d/flaskr/images/upload_w.png">
@@ -83,18 +89,15 @@
                 <i class=" bi-eye-slash" id="togglePassword"></i>
                 <i class=" bi-eye" id="togglePassword" hidden></i>
 
-
-
                 <!-- Style value is needed on both button tag otherwise CSS file won't recognise it?? -->
                 <button class="b1" style="background-color: rgb(66, 78, 78);" type="submit" name="action" value="encrypt">Encrypt</button> 
                 <button class="b2" style="background-color: rgb(66, 78, 78);" type="submit" name="action" value="decrypt">Decrypt</button>
             </form>
 
       </label>
-      <p class="warning_text" style="width: 60vw; border: 2px dashed white; font-size: 1em; justify-self: center; margin-top: 3em; padding: 1em;" > !Please ensure once the file has been decrypted, any trailing characters containing <span style="color: rgb(254, 122, 149);">".remove_me"</span> are removed! </p>
+      <p class="warning_text" style="width: 60vw; border: 2px solid white; font-size: 1em; justify-self: center; margin-top: 3em; padding: 1em;" > !Please ensure once the file has been decrypted, any trailing characters containing <span style="color: rgb(254, 122, 149);">".remove_me"</span> are removed! </p>
 
       <script 
-
       src="{{ url_for('static', filename='file_encrypt.js') }}">
 
     

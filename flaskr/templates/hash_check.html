@@ -9,6 +9,9 @@
     <title>{% block title %}{% endblock %} Hash checker</title>
 
     <style>
+        :root{
+        --font: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        }
         
         html{
             background-color: #15191F; /*MAIN COLOUR FOR ALMOST EVERYTHING*/
@@ -47,19 +50,41 @@
         .hash_generate + label{
             color: aliceblue;
         }
+
+        li > span{
+            font-family: var(--font) !important;
+            color: aliceblue !important;
+            font-size: 1.2em;
+        }
+
     </style>
 </head>
 <body>
-
+    <nav>
+        <ul id="nav_bar">
+            <div>
+                <li class="Home icon" style="margin-bottom: 0.2em;"> AESgis defense</li>
+                <img src="https://raw.githubusercontent.com/turbomoisty/CS204/9c82a72a6be3bd446cb926b0563f374d87031a7b/flaskr/images/shield_nb.png">
+                <a id="home_link" href="{{ url_for('views.main_page') }}"></a>
+            </div>
+            <div class="log_in_out">
+                {% if g.user %}
+                <li><span>Welcome {{ g.user['username'] }}</span></li>
+                <li><a href="{{ url_for('auth.login') }}">Log out</a></li>
+                {% else %}
+                <li><a href="{{ url_for('auth.register') }}">Register</a>
+                <li><a href="{{ url_for('auth.login') }}">Log in</a></li>
+                {% endif %}
+            </div>
+        </ul>
+    </nav>
       <div class="lady"></div>
-      <a class="back" href="{{url_for('views.main_page')}}" style="color: aliceblue;"> << Return</a>
       <div id="hash_segment">
         <div class ="pic" style=" background: url('https://raw.githubusercontent.com/turbomoisty/CS204/7b5e3c82dc4f56b89603646b64ff57b1699b5a33/flaskr/images/hash_lock.png'); background-size:cover;">
-            
-            <p>HASH</p>
-            <p>CHECK</p>
+            <p id="title_text" style="font-family: var(--font);">HASH</p>
+            <p id="title_text" style="font-family: var(--font);">CHECK</p>
         </div>
-            <label class='hash_selector_text' for="hash_value" style="margin-left: -22px;">Select Hash algorithm to check:</label>
+            <label class='hash_selector_text' for="hash_value" style=" font-family: var(--font);">Select Hash algorithm</label>
             <select class="hash_select" style='cursor: pointer;' name="hash" id="hash_value_type">
               <option value="md5">md5</option>
               <option value="sha1">sha1</option>
@@ -69,7 +94,6 @@
               <option value="sha512">sha512</option>
             </select>
       </div>
-
     {% if error_message %}  <!-- Can't seem to trigger message. Fix that later.-->
       <div id="error-box" style="display: block;">
           <div>
@@ -103,7 +127,6 @@
                     <input type="text" id="hash_output_l_file" name="hash_output_l_file">
                 </div>
         </div>
-
 
         <!-- BUTTON SEGMENT-->
         <div class="hash_check_button">
