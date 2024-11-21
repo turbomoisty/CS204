@@ -1,5 +1,5 @@
 import functools
-import re
+from re import match
 from flask_login import login_user, logout_user
 from .models import User
 
@@ -18,18 +18,16 @@ def register():
         db = get_db()
         error = None
         
-        if not re.match("^[A-Za-z0-9]+$", username): #Does not allow for special characters
-            error = 'Username is required'
+        if not match("^[A-Za-z0-9]+$", username): #Does not allow for special characters
+            error = 'valid username is required'
             
         elif password:
             if len(password) < 8:
                 error = 'Password length must be at least 8'
 
-        elif not password:
-            error = 'Password is required'
-            
-        elif not email or not re.match("^[A-Za-z0-9\.\+_-]+@[A-Za-z0-9\._-]+\.[a-zA-Z]*$", email):
+        elif not match(r"^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$", email):
             error = 'Invalid email format.'
+            
         if error is None:
             try:
                 db.execute("INSERT INTO user (username, password, email) VALUES (?, ?, ?)", 

@@ -177,9 +177,8 @@ def delete_password():
     user_id = current_user.id
     file_id = request.form['file_id']
 
-    # Ensure the password belongs to the current user
     file = db.execute(
-        "SELECT * FROM user_file WHERE id = ? AND user_id = ?", (file_id, user_id)
+        "SELECT * FROM user_file WHERE id =? AND user_id = ?", (file_id, user_id)
     ).fetchone()
 
     if file is None:
@@ -187,11 +186,11 @@ def delete_password():
         return redirect(url_for('views.password_manager'))
 
     try:
-        db.execute("DELETE FROM user_file WHERE id = ? AND user_id = ?", (file_id, user_id))
+        db.execute("DELETE FROM user_file WHERE id = ? AND user_id =?", (file_id, user_id))
         db.commit()
         flash("Password deleted successfully!")
-    except Exception as e:
-        flash(f"An error occurred while deleting the password: {e}")
+    except Exception as _:
+        flash("An error occurred while deleting the password..")
 
     return redirect(url_for('views.password_manager'))
 
@@ -227,7 +226,7 @@ def settings():
             try:
                 if new_password:
                     password = generate_password_hash(new_password)
-                db.execute('UPDATE user SET username = ?, email = ?, password = ? WHERE id = ?',
+                db.execute('UPDATE user SET username = ?,email = ?,password = ? WHERE id = ?',
                            (username, email, password, user_id))
                 db.commit()
                 flash('Account updated successfully.')
