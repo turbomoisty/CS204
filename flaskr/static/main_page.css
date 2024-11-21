@@ -80,13 +80,14 @@ li > a{
 }
 /*   NAV BAR   END */
 
+
+/*  MENU BAR WORDS*/
+
+
 #menu{
     display: flex;
     flex-direction: row;
 }
-
-
-/*  MENU BAR WORDS*/
 
 
 #menu-list{

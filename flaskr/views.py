@@ -87,6 +87,8 @@ def hash_check():
         
 
 #####   Allow user to pick hash algorithm type if I have time   #####
+####FILE ENCRYPTION###
+
 @views.route('/file_encrypt', methods=['GET', 'POST'])
 @login_required
 def file_encrypt():
@@ -119,16 +121,88 @@ def file_encrypt():
             except Exception as _:
                 error = "Invalid passcode or given format"
                 return render_template('file_encrypt.html', error_message=error), 400
+        
     return render_template('file_encrypt.html')
 
 
+####PASS MANAGER###
+
+@views.route('/password_manager', methods=['GET','POST'])
+@login_required
+def password_manager():
+    db=get_db()
+    user_id = current_user.id
+    error = None
+
+    if request.method == 'POST':
+        file_title = request.form['file_title']
+        file_password = request.form['file_password']
+        
+        if not file_title or not file_password:
+            error = '--Title or password is missing, please ensure all fields are complete'
+            
+        else:
+            try:
+
+                db.execute(
+                "INSERT INTO user_file (user_id, file_title, file_password) VALUES (?, ? ,?)", (user_id, file_title, file_password),)
+                db.commit()
+                flash('password has been saved successfullyy')
+            except Exception as _:
+                error = 'Error occured while trying to save your data!'
+                flash(error)
+        if error:
+            flash(error)
+            
+    user_files = db.execute(
+    "SELECT id, file_title, file_password, created_date FROM user_file WHERE user_id = ?",(user_id,), ).fetchall()
+
+    return render_template('password_manager.html', user_files=user_files)
+
+            
+# For reference
+# CREATE TABLE user_file (
+#     id INTEGER PRIMARY KEY AUTOINCREMENT,
+#     user_id INTEGER NOT NULL,
+#     file_title TEXT NOT NULL,
+#     file_password TEXT NOT NULL,
+#     created_date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+#     FOREIGN KEY (user_id) REFERENCES user (id) ON DELETE CASCADE
+# );
+
+@views.route('/delete_password', methods=['POST'])
+@login_required
+def delete_password():
+    db = get_db()
+    user_id = current_user.id
+    file_id = request.form['file_id']
+
+    # Ensure the password belongs to the current user
+    file = db.execute(
+        "SELECT * FROM user_file WHERE id = ? AND user_id = ?", (file_id, user_id)
+    ).fetchone()
+
+    if file is None:
+        flash("Password not found or unauthorized access!")
+        return redirect(url_for('views.password_manager'))
+
+    try:
+        db.execute("DELETE FROM user_file WHERE id = ? AND user_id = ?", (file_id, user_id))
+        db.commit()
+        flash("Password deleted successfully!")
+    except Exception as e:
+        flash(f"An error occurred while deleting the password: {e}")
+
+    return redirect(url_for('views.password_manager'))
+
+
+####USER SETTINGS####
 @views.route('/settings', methods=['GET', 'POST'])
 @login_required
 def settings():
     db = get_db()
     user_id = current_user.id
     error = None
-    # Fetch the current user's details
     user = db.execute('SELECT * FROM user WHERE id = ?', (user_id,)).fetchone()
     
     if request.method == 'POST':
@@ -139,16 +213,16 @@ def settings():
         confirm_password = request.form['confirm_password']
         
         if not username or not email:
-            error = 'Username and email are required.'
+            error = '--Username and email are required--'
         elif new_password and new_password != confirm_password:
-            error = 'Passwords do not match.'
+            error = '--Passwords do not match--'
         elif new_password and len(new_password) < 8:
             error = '--Password must be at least 8 characters long--'
-        elif not re.match("^[a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$", email):
-            error = 'Invalid email format.'
+        elif not re.match("^[a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+[a-zA-Z]{2,}$", email):  
+            error = '--Invalid email entered--'
             
         elif new_password == password:
-            error = 'your new password cannot be'
+            error = '--your new password cannot be the same as your last one--'
         if error is None:
             try:
                 if new_password:
@@ -159,6 +233,6 @@ def settings():
                 flash('Account updated successfully.')
                 return redirect(url_for('views.main_page'))
             except db.IntegrityError:
-                error = 'Username or email already taken.'
+                error = '--Username or email already taken--'
         flash(error)
     return render_template('settings.html', user=user)

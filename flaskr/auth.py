@@ -60,7 +60,7 @@ def login():
             error = 'Incorrect username or password'
     
         if error is None:
-            user = User.from_db_row(user_row)  # Convert database row to User object
+            user = User.from_db_row(user_row)  #Convert database row to User object
             login_user(user) 
             return redirect(url_for('views.main_page'))
         flash(error)
@@ -69,7 +69,7 @@ def login():
         
 @bp.route('/logout')
 def logout():
-    session.clear()
+    session.clear() #Currently I can't seem to clear user session... TO be fixed
     logout_user()
     return redirect(url_for('auth.login'))
 
