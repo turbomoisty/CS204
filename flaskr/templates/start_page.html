@@ -45,14 +45,13 @@
             text-align: center;
         }
         
-        p{
+        p, #dash{
             font-family: var(--font);
             font-size: 1.3em;
             z-index: 12;
             margin-top: -1.5em;
             color: var(--main_colour_white);
         }
-
                 
 
         a {
@@ -62,8 +61,35 @@
             padding: 0.1em;
         }
 
+
+        #top_text{
+            margin-top: 6em;
+            display: flex;
+            flex-direction: row;
+        }
+
         a:hover{
             cursor: pointer;
+        }
+
+
+        #hello_text, #dash{
+            font-size: 3em;
+        }
+
+        #dash{
+            animation: blink 993ms infinite linear ;
+        }
+
+        @keyframes blink{
+            
+            0%, 49%{
+                opacity: 0;
+            }
+
+            51%, 100%{
+                opacity: 1;
+            }
         }
 
 
@@ -71,12 +97,53 @@
     </style>
 </head>
 <body>
+    <div id="top_text">
+        <p id="hello_text"></p>
+
+        <p id="dash">_</p>
+    </div>
     <div id="c_div">
-        <img src="https://raw.githubusercontent.com/turbomoisty/CS204/9c82a72a6be3bd446cb926b0563f374d87031a7b/flaskr/images/shield_nb.png">
+        <img style="margin-top: -3em;" src="https://raw.githubusercontent.com/turbomoisty/CS204/9c82a72a6be3bd446cb926b0563f374d87031a7b/flaskr/images/shield_nb.png">
         <p>Click <a href="{{ url_for('views.main_page')}}"> Here </a> to Enter</p>
     </div>
     
 
-    <script></script>
+    <script>
+        const hello_text = document.getElementById('hello_text');
+
+        setTimeout( ()=>{
+            const greeting = ['H','e','l','l','o','!', ' '];
+
+            let string_count = 0;
+
+            let loop = setInterval( function(){
+                hello_text.textContent += greeting[string_count];
+                string_count++;
+
+                if (string_count == greeting.length){
+                    clearInterval(loop)
+                    setTimeout(()=>{
+                        const more_words = [
+                        'W', 'e', 'l', 'c', 'o', 'm', 'e', ' ',
+                        't', 'o', ' ', 'm', 'y', ' ', 'p', 'r',
+                        'o', 'j', 'e', 'c', 't'
+                      ]
+                        let another_count = 0;
+
+                        let another_loop = setInterval(function(){
+                            hello_text.textContent += more_words[another_count]
+                            another_count++;
+    
+                            if (another_count == more_words.length){
+                                clearInterval(another_loop)
+                            }                            
+                        }, 200)
+          
+                    },400)
+                }
+            },200)
+        },600)
+
+    </script>
 </body>
 </html>

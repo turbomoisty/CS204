@@ -24,7 +24,7 @@ def register():
         elif password:
             if len(password) < 8:
                 error = 'Password length must be at least 8'
-
+        #Check logic poperly for multiple if/elifs
         elif not match(r"^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$", email):
             error = 'Invalid email format.'
             

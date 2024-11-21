@@ -87,6 +87,7 @@ def hash_check():
         
 
 #####   Allow user to pick hash algorithm type if I have time   #####
+
 ####FILE ENCRYPTION###
 
 @views.route('/file_encrypt', methods=['GET', 'POST'])
@@ -147,7 +148,6 @@ def password_manager():
                 db.execute(
                 "INSERT INTO user_file (user_id, file_title, file_password) VALUES (?, ? ,?)", (user_id, file_title, file_password),)
                 db.commit()
-                flash('password has been saved successfullyy')
             except Exception as _:
                 error = 'Error occured while trying to save your data!'
                 flash(error)
@@ -210,7 +210,7 @@ def settings():
         password = request.form['password']
         new_password = request.form['new_password']
         confirm_password = request.form['confirm_password']
-        
+        ## Some error message appear on the wrong page!!! fix when able to
         if not username or not email:
             error = '--Username and email are required--'
         elif new_password and new_password != confirm_password:
