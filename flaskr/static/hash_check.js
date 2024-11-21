@@ -1,3 +1,7 @@
+
+
+//  LEFT SIDE OF BOX
+
 const hash_option_drop_down = document.getElementById('hash_l');
 const option_div = document.querySelectorAll('.option_l');
 
@@ -20,6 +24,10 @@ hash_option_drop_down.addEventListener('change', () =>{
     }
 
 });
+
+
+
+//  RIGHT SIDE OF BOX
 
 
 const hash_option_drop_down_r = document.getElementById('hash_r');
@@ -45,6 +53,8 @@ hash_option_drop_down_r.addEventListener('change', () =>{
     }
 });
 
+
+// Actual logic for sending HASH data starts here
 
 async function generateHash(whatever_side){
     const userTextInput = document.getElementById(`text_input_${whatever_side}`).value;
@@ -79,7 +89,7 @@ async function generateHash(whatever_side){
 }
 
 async function generateHashFile(whatever_side){
-    console.log("Side:", whatever_side); // Debug log to see if parameter does get passed.
+    console.log("Side:", whatever_side); // debug log to see if parameter does get passed or not .
 
     const userFileInput = document.getElementById(`file_input_${whatever_side}`);
     const hashType = document.getElementById('hash_value_type').value;

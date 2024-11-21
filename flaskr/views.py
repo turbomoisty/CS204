@@ -63,12 +63,10 @@ def generate_file_key(passcode): ##just for file encryption
 ##----Page routes-----s##
 
 
-
 @views.route('/')
 @views.route('start_page')
 def start_page():
     return render_template('start_page.html')
-
 
 @views.route('/main_page')
 def main_page():
@@ -216,6 +214,7 @@ def settings():
         elif new_password and new_password != confirm_password:
             error = '--Passwords do not match--'
         elif new_password and len(new_password) < 8:
+            
             error = '--Password must be at least 8 characters long--'
         elif not re.match("^[a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+[a-zA-Z]{2,}$", email):  
             error = '--Invalid email entered--'

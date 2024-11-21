@@ -14,7 +14,9 @@ function uploadFile(){
         const file = input_file.files[0];
 
         if(file){
-
+            
+            //SOmetimes file drag will just not work?? I can't tell if the issue is here or CSS..
+            //TO do later
             pass_form.style.display = 'grid'; 
 
             let link = URL.createObjectURL(file);

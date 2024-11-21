@@ -20,6 +20,9 @@ for (let i =0; i < icon_items.length; i++){
             t_box.style.display = 'none';
         });
 
+
+        //animation: name duration timing-function delay iteration-count direction fill-mode play-state;
+
         setTimeout(function(){
             if (text_box[i]) {
                 text_box[i].style.animation = 'pop-up 333ms ease-in-out forwards';
