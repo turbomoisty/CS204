@@ -7,12 +7,14 @@ from flask import Blueprint, flash, g, redirect, render_template, request, sessi
 from werkzeug.security import check_password_hash, generate_password_hash
 from flaskr.db import get_db
 
-bp = Blueprint('auth', __name__, url_prefix='/auth')
 
-@bp.route('/register', methods=['GET','POST'])
+
+bp = Blueprint('auth', __name__, url_prefix='/auth')#
+
+@bp.route('/register', methods=['GET','POST']) #associates the /register with the function below.
 def register():
     if request.method == 'POST':
-        username = request.form['username']
+        username = request.form['username'] 
         password = request.form['password']
         email = request.form['email']
         db = get_db()
@@ -31,7 +33,8 @@ def register():
         if error is None:
             try:
                 db.execute("INSERT INTO user (username, password, email) VALUES (?, ?, ?)", 
-                           (username, generate_password_hash(password), email),)
+                           (username, generate_password_hash(password), email),)#takes the query with the ? placeholders with user input
+                            # Since it's not safe to store PWs directly, use gph from werkzeug
                 db.commit()
                 
                 user_list = db.execute("SELECT * FROM user").fetchall()
@@ -54,7 +57,7 @@ def login():
         db = get_db()
         error = None
         user_row = db.execute('SELECT * FROM user WHERE username = ?', (username,)).fetchone()
-        if (user_row is None) or (not check_password_hash(user_row['password'], password)):
+        if (user_row is None) or (not check_password_hash(user_row['password'], password)): #If entered has doesnt match existing hash, give error
             error = 'Incorrect username or password'
     
         if error is None:

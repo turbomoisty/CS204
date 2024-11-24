@@ -61,8 +61,6 @@ async function generateHash(whatever_side){
     const hashType = document.getElementById('hash_value_type').value;
     const result_answer = document.getElementById('compare_result');
 
-    
-
     if(!userTextInput){
         result_answer.innerText = 'Enter a value first!';
         return;
